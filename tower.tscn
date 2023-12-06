@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://ch2y8yoxkc3lt"]
+
+[ext_resource type="Script" path="res://tower.gd" id="1_6886o"]
+[ext_resource type="Texture2D" uid="uid://cfgj6lplhxkir" path="res://tower.png" id="2_gufcj"]
+[ext_resource type="PackedScene" uid="uid://pm7xwdrh0kcj" path="res://acquisition.tscn" id="3_q04uk"]
+[ext_resource type="PackedScene" uid="uid://c0tg7e8jc3h3a" path="res://ranged.tscn" id="4_4s3yr"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 38.0132
+
+[sub_resource type="Theme" id="2"]
+
+[node name="tower" type="CharacterBody2D"]
+position = Vector2(114, 790)
+script = ExtResource("1_6886o")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.206055, 0.212768)
+texture = ExtResource("2_gufcj")
+
+[node name="cs" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("1")
+
+[node name="acquisition" parent="." instance=ExtResource("3_q04uk")]
+position = Vector2(-1, 0)
+
+[node name="bar" type="ProgressBar" parent="."]
+offset_left = -59.0
+offset_top = -67.0
+offset_right = 59.0
+offset_bottom = -53.0
+theme = SubResource("2")
+value = 60.0
+
+[node name="ranged" parent="." instance=ExtResource("4_4s3yr")]
+
+[connection signal="body_entered" from="acquisition" to="." method="_on_acquisition_body_entered"]
+
+[editable path="acquisition"]

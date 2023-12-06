@@ -1,0 +1,6 @@
+*.import
+*.png
+*.swp
+.godot/*
+addons/*
+script_templates/*

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://pm7xwdrh0kcj"]
+
+[ext_resource type="Script" path="res://acquisition.gd" id="1_xkef6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g0lyn"]
+radius = 385.083
+
+[node name="acquisition" type="Area2D"]
+script = ExtResource("1_xkef6")
+
+[node name="cs" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g0lyn")
+debug_color = Color(0.658824, 0, 0.701961, 0.0823529)

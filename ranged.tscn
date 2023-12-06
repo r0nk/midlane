@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0tg7e8jc3h3a"]
+
+[ext_resource type="Script" path="res://ranged.gd" id="1_wirm1"]
+
+[node name="ranged" type="Node2D"]
+script = ExtResource("1_wirm1")

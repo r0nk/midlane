@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://0vqxkwa3nw8q"]
+
+[ext_resource type="Script" path="res://Camera3D.gd" id="1_kwj0e"]
+[ext_resource type="PackedScene" uid="uid://bhek1084fhjrp" path="res://models/tree.glb" id="2_un76p"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tbk12"]
+
+[sub_resource type="Gradient" id="Gradient_j7mj0"]
+colors = PackedColorArray(0.642562, 0.642562, 0.642562, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ud7y6"]
+noise_type = 2
+seed = 23
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t416j"]
+color_ramp = SubResource("Gradient_j7mj0")
+noise = SubResource("FastNoiseLite_ud7y6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b6s6x"]
+albedo_color = Color(0.0392157, 0.47451, 0.117647, 1)
+albedo_texture = SubResource("NoiseTexture2D_t416j")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qqc8i"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.579228, 0.40558, 0, 0.573576, 0.819152, -0.707107, -0.579228, 0.40558, 0, 30, 0)
+fov = 50.0
+size = 50.0
+frustum_offset = Vector2(-0.5, -0.5)
+script = ExtResource("1_kwj0e")
+
+[node name="hud" type="CanvasLayer" parent="Camera3D"]
+
+[node name="target_label" type="RichTextLabel" parent="Camera3D/hud"]
+offset_right = 372.0
+offset_bottom = 40.0
+text = "null"
+
+[node name="unit" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07365, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="unit"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="unit"]
+shape = SubResource("CylinderShape3D_tbk12")
+
+[node name="map" type="Node3D" parent="."]
+
+[node name="floor" type="CSGBox3D" parent="map"]
+size = Vector3(34.5177, 1, 28.5495)
+material = SubResource("StandardMaterial3D_b6s6x")
+
+[node name="decoration" type="Node3D" parent="map"]
+
+[node name="tree" parent="map/decoration" instance=ExtResource("2_un76p")]
+transform = Transform3D(0.305585, 0, 0, 0, 0.305585, 0, 0, 0, 0.305585, -8.50738, 0, -6.51549)
+
+[node name="tree2" parent="map/decoration" instance=ExtResource("2_un76p")]
+transform = Transform3D(0.156266, 0, -0.262608, 0, 0.305585, 0, 0.262608, 0, 0.156266, -8.50738, 0, -1.77945)
+
+[node name="tree3" parent="map/decoration" instance=ExtResource("2_un76p")]
+transform = Transform3D(0.156266, 0, -0.262608, 0, 0.305585, 0, 0.262608, 0, 0.156266, -14.4437, 0, -10.4745)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.397356, 0.917665, 0, -0.917665, 0.397356, 0, 0, 9.76308)
+
+[node name="bedrock" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.199, 0)
+collision_layer = 32769
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bedrock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+shape = SubResource("WorldBoundaryShape3D_qqc8i")

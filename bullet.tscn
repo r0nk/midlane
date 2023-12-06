@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://s6aom0id4yq5"]
+
+[ext_resource type="Texture2D" uid="uid://c1qvoq7by27gh" path="res://projectile.png" id="1"]
+[ext_resource type="Script" path="res://bullet.gd" id="2"]
+
+[node name="bullet" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("2")
+
+[node name="Projectile" type="Sprite2D" parent="."]
+position = Vector2(-2, 1)
+scale = Vector2(0.125, 0.126953)
+texture = ExtResource("1")

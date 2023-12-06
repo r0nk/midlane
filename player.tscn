@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4bgf1ast5gh8"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_rx2w6"]
+[ext_resource type="Texture2D" uid="uid://06asspjtgbtg" path="res://shadow_fiend.png" id="2_4i6y7"]
+[ext_resource type="PackedScene" uid="uid://pm7xwdrh0kcj" path="res://acquisition.tscn" id="3_e8v8g"]
+[ext_resource type="PackedScene" uid="uid://c0tg7e8jc3h3a" path="res://ranged.tscn" id="4_v80cm"]
+[ext_resource type="Script" path="res://wallet.gd" id="5_drmoc"]
+[ext_resource type="Script" path="res://player_ai.gd" id="6_bvf5o"]
+[ext_resource type="Script" path="res://items/branch.gd" id="7_ws14e"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 20.3961
+
+[node name="player" type="CharacterBody2D" groups=["hero"]]
+position = Vector2(403, 292)
+script = ExtResource("1_rx2w6")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(-1, -1)
+scale = Vector2(0.138672, 0.148193)
+texture = ExtResource("2_4i6y7")
+
+[node name="cs" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("1")
+
+[node name="acquisition" parent="." instance=ExtResource("3_e8v8g")]
+
+[node name="ranged" parent="." instance=ExtResource("4_v80cm")]
+
+[node name="wallet" type="Node2D" parent="."]
+script = ExtResource("5_drmoc")
+
+[node name="AIController2D" type="Node2D" parent="."]
+script = ExtResource("6_bvf5o")
+
+[node name="inventory" type="Node2D" parent="."]
+
+[node name="branch" type="Node2D" parent="inventory"]
+script = ExtResource("7_ws14e")
