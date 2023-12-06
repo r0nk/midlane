@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://0vqxkwa3nw8q"]
+[gd_scene load_steps=11 format=3 uid="uid://0vqxkwa3nw8q"]
 
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_kwj0e"]
+[ext_resource type="Script" path="res://unit.gd" id="2_l5ywj"]
 [ext_resource type="PackedScene" uid="uid://bhek1084fhjrp" path="res://models/tree.glb" id="2_un76p"]
+[ext_resource type="Script" path="res://pathfinding.gd" id="2_xwc7q"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tbk12"]
 
@@ -22,7 +24,7 @@ albedo_texture = SubResource("NoiseTexture2D_t416j")
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qqc8i"]
 
-[node name="Node3D" type="Node3D"]
+[node name="main" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, -0.579228, 0.40558, 0, 0.573576, 0.819152, -0.707107, -0.579228, 0.40558, 0, 30, 0)
@@ -39,12 +41,16 @@ offset_bottom = 40.0
 text = "null"
 
 [node name="unit" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07365, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2263, 2.07365, -22.4253)
+script = ExtResource("2_l5ywj")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="unit"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="unit"]
 shape = SubResource("CylinderShape3D_tbk12")
+
+[node name="pathfinding" type="Node" parent="unit"]
+script = ExtResource("2_xwc7q")
 
 [node name="map" type="Node3D" parent="."]
 
