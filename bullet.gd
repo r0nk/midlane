@@ -1,7 +1,7 @@
-extends CharacterBody2D
+extends CharacterBody3D
 
 var target
-var damage = 50
+var damage = 5
 var cause
 
 func _process(delta):
@@ -9,12 +9,11 @@ func _process(delta):
 		queue_free()
 		return
 	look_at(target.position)
-	if position.distance_to(target.position) > 20:
-		position-=(position-target.position).normalized() * 10
+	if position.distance_to(target.position) > 1:
+		position-=(position-target.position).normalized() * 1
 	else:
-		target.health-=damage
-		if(target.health<=0) and cause and cause.has_node("wallet") and target.bounty:
-			cause.get_node("wallet").cash+=target.bounty
-			if(cause.has_node("AIController2D")):
-				cause.get_node("AIController2D").reward=target.bounty
+		if(target.has_node("health")):
+			target.get_node("health/sv/bar").value-=damage
+		else:
+			print("attempted to damage a target with no health")
 		queue_free()

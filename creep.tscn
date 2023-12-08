@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6a0ritw02bxx"]
+[gd_scene load_steps=11 format=3 uid="uid://b6a0ritw02bxx"]
 
 [ext_resource type="Script" path="res://creep3D.gd" id="1_8flh6"]
 [ext_resource type="Script" path="res://pathfinding.gd" id="2_hby8k"]
+[ext_resource type="PackedScene" uid="uid://b82fju5la8bll" path="res://health.tscn" id="3_cak42"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qw5bq"]
 
@@ -45,8 +46,11 @@ albedo_color = Color(1, 0, 0.14902, 1)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tbk12"]
 height = 1.66803
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_lofqf"]
+viewport_path = NodePath("sv")
+
 [node name="creep" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7141, 2.07365, -22.4253)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_8flh6")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
@@ -67,3 +71,6 @@ shape = SubResource("CylinderShape3D_tbk12")
 [node name="pathfinding" type="Node" parent="."]
 script = ExtResource("2_hby8k")
 speed = 3
+
+[node name="health" parent="." instance=ExtResource("3_cak42")]
+texture = SubResource("ViewportTexture_lofqf")

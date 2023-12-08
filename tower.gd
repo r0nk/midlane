@@ -1,5 +1,6 @@
 extends StaticBody3D
 
 func _process(delta):
-	$model/turret.look_at($"../unit".position)
+	if $acquisition.target != null:
+		$model/turret.look_at($acquisition.target.position)
 

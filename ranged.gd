@@ -1,9 +1,11 @@
-extends Node2D
+extends Marker3D
 
 @onready var bullet = load("res://bullet.tscn")
+@export var acquisition_path = "../acquistion"
+var acquisition
 
 var range=350
-var damage=50
+var damage=10
 
 var timer=1
 
@@ -15,21 +17,24 @@ func disable():
 func enable():
 	active=true
 
+func _ready():
+	acquisition=get_node(acquisition_path)
+
 func attack(target):
 	var b = bullet.instantiate()
 	b.position=global_position
 	b.target=target
 	b.cause=get_parent()
 	b.damage=damage
-	get_parent().add_sibling(b)
+	get_tree().get_root().get_node("main").add_child(b)
 
 func _process(delta):
 	if not active:
 		return
-	if is_instance_valid($"../acquisition".target) and global_position.distance_to($"../acquisition".target.position) < range:
+	if is_instance_valid(acquisition.target) and global_position.distance_to(acquisition.target.position) < range:
 		timer-=delta
 		if(timer<=0):
 			timer=1
-			attack($"../acquisition".target)
+			attack(acquisition.target)
 	else:
 		timer=0

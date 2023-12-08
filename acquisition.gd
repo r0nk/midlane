@@ -1,29 +1,24 @@
-extends Area2D
+extends Area3D
 
 var root
-@export var team = "rad"
 @onready var target
-@onready var target_name = "rad_tower"
+@onready var target_name = "unit"
 
 func process_targeting():
-	var closest = root.get_node("main/"+target_name)
-	target=closest
-	var closest_distance = 9999999
 	var bodies = get_overlapping_bodies()
 #       print(name+" is processing targeting " + str(bodies.size()) + "options")
-
-	if(bodies.size() <= 1):
-		#               print("no overlapping bodies")
+	if(bodies.size() == 0):
+		target=null
 		return
 	bodies.sort_custom(target_sort)
 	var body = bodies.pop_front()
-	if(body.name == name):
+	if(body.name == get_parent().name):
+		target=null
 		return
-	var distance = position.distance_to(body.position)
-	if body.has_node("acquisition") and body.get_node("acquisition").get("team") != team:
-		target=body
-#       print("switching target to"+closest.name)
+	target=body
 
+func body_entered_or_exited(_body):
+	process_targeting()
 
 #return a < b
 func target_sort(a,b):
