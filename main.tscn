@@ -1,11 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://ddgyi7mut6lsk"]
+[gd_scene load_steps=22 format=3 uid="uid://ddgyi7mut6lsk"]
 
 [ext_resource type="Script" path="res://camera.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://db6ssnpdm17sp" path="res://grassy.png" id="4"]
 [ext_resource type="PackedScene" uid="uid://b4bgf1ast5gh8" path="res://player.tscn" id="4_o87j2"]
 [ext_resource type="Texture2D" uid="uid://33sp5uxiojwv" path="res://marker.png" id="5"]
 [ext_resource type="FontFile" uid="uid://cjvipsrbvu6ay" path="res://m5x7.ttf" id="6"]
-[ext_resource type="PackedScene" uid="uid://ch2y8yoxkc3lt" path="res://tower.tscn" id="6_3ftjk"]
 [ext_resource type="Script" path="res://Marker.gd" id="7"]
 [ext_resource type="Texture2D" uid="uid://bv1dahg83jai0" path="res://sprites/items.png" id="7_r3ug5"]
 [ext_resource type="Texture2D" uid="uid://cxtggqgrq0ljy" path="res://barracks.png" id="8"]
@@ -89,12 +88,6 @@ scale = Vector2(2.23242, 1.76562)
 texture = ExtResource("4")
 
 [node name="player" parent="." instance=ExtResource("4_o87j2")]
-
-[node name="rad_tower" parent="." instance=ExtResource("6_3ftjk")]
-position = Vector2(-50, 844)
-
-[node name="bad_tower" parent="." instance=ExtResource("6_3ftjk")]
-position = Vector2(1200, 56)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 1

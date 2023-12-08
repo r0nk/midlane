@@ -1,41 +1,74 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch2y8yoxkc3lt"]
+[gd_scene load_steps=12 format=3 uid="uid://bvsvjg1epevnh"]
 
 [ext_resource type="Script" path="res://tower.gd" id="1_6886o"]
-[ext_resource type="Texture2D" uid="uid://cfgj6lplhxkir" path="res://tower.png" id="2_gufcj"]
-[ext_resource type="PackedScene" uid="uid://pm7xwdrh0kcj" path="res://acquisition.tscn" id="3_q04uk"]
-[ext_resource type="PackedScene" uid="uid://c0tg7e8jc3h3a" path="res://ranged.tscn" id="4_4s3yr"]
+[ext_resource type="Script" path="res://ranged.gd" id="2_wei82"]
+[ext_resource type="Script" path="res://acquisition.gd" id="3_7okt3"]
 
-[sub_resource type="CircleShape2D" id="1"]
-radius = 38.0132
+[sub_resource type="Gradient" id="Gradient_065k4"]
+colors = PackedColorArray(0.29634, 0.294337, 0.294337, 1, 0.540732, 0.540732, 0.540732, 1)
 
-[sub_resource type="Theme" id="2"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vd2y2"]
 
-[node name="tower" type="CharacterBody2D"]
-position = Vector2(114, 790)
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cedio"]
+color_ramp = SubResource("Gradient_065k4")
+noise = SubResource("FastNoiseLite_vd2y2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1fr4"]
+albedo_texture = SubResource("NoiseTexture2D_cedio")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmvo8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ge5by"]
+size = Vector3(2.03027, 3.91205, 1.99817)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hrlht"]
+height = 7.57082
+radius = 13.7267
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4whf"]
+albedo_color = Color(0.607843, 0.47451, 0, 1)
+
+[node name="tower" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73634, 0.5113, 17.0478)
 script = ExtResource("1_6886o")
 
-[node name="sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
-scale = Vector2(0.206055, 0.212768)
-texture = ExtResource("2_gufcj")
+[node name="model" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36039, 0)
+radius = 1.0
+height = 4.0
+material = SubResource("StandardMaterial3D_t1fr4")
 
-[node name="cs" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
-shape = SubResource("1")
+[node name="turret" type="CSGBox3D" parent="model"]
+transform = Transform3D(0.577892, 0, 0, 0, 0.577892, 0, 0, 0, 0.577892, 0, 2.72346, 0)
+size = Vector3(2, 2, 2)
+material = SubResource("ShaderMaterial_wmvo8")
 
-[node name="acquisition" parent="." instance=ExtResource("3_q04uk")]
-position = Vector2(-1, 0)
+[node name="CSGBox3D2" type="CSGBox3D" parent="model/turret"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.06886)
+size = Vector3(1, 1, 3)
+material = SubResource("ShaderMaterial_wmvo8")
 
-[node name="bar" type="ProgressBar" parent="."]
-offset_left = -59.0
-offset_top = -67.0
-offset_right = 59.0
-offset_bottom = -53.0
-theme = SubResource("2")
-value = 60.0
+[node name="ranged" type="Marker3D" parent="model/turret"]
+transform = Transform3D(1.73043, 0, 0, 0, 1.73043, 0, 0, 0, 1.73043, -0.017251, 0.00934458, -3.07613)
+script = ExtResource("2_wei82")
+acquisition_path = "../../../acquisition"
 
-[node name="ranged" parent="." instance=ExtResource("4_4s3yr")]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0161133, 1.45602, -0.024353)
+shape = SubResource("BoxShape3D_ge5by")
 
-[connection signal="body_entered" from="acquisition" to="." method="_on_acquisition_body_entered"]
+[node name="acquisition" type="Area3D" parent="."]
+script = ExtResource("3_7okt3")
 
-[editable path="acquisition"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="acquisition"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.74305, 0)
+shape = SubResource("CylinderShape3D_hrlht")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22359, 0)
+radius = 13.916
+sides = 20
+material = SubResource("StandardMaterial3D_v4whf")
+
+[connection signal="body_entered" from="acquisition" to="acquisition" method="body_entered_or_exited"]
+[connection signal="body_exited" from="acquisition" to="acquisition" method="body_entered_or_exited"]

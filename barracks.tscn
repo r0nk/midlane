@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://rxxo60itn26k"]
+
+[ext_resource type="Script" path="res://barracks.gd" id="1_e8l7a"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ww2w6"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2b06w"]
+albedo_color = Color(0.47451, 0.47451, 0.47451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_heltd"]
+material = SubResource("StandardMaterial3D_2b06w")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhsan"]
+albedo_color = Color(0.670588, 0.368627, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bgdcl"]
+size = Vector3(5, 3, 5)
+
+[node name="barracks" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73634, 0.5113, -6.94443)
+script = ExtResource("1_e8l7a")
+
+[node name="particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.200326, 0.981513, 0.126282)
+process_material = SubResource("ParticleProcessMaterial_ww2w6")
+draw_pass_1 = SubResource("BoxMesh_heltd")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
+outer_radius = 2.0
+material = SubResource("StandardMaterial3D_mhsan")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGTorus3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30452, 0.956004, 1.40239)
+sides = 4
+cone = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGTorus3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48908, 0.955167, 1.56569)
+sides = 4
+cone = true
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGTorus3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48063, 0.954772, -1.43243)
+sides = 4
+cone = true
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGTorus3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23267, 0.95573, -1.2731)
+sides = 4
+cone = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0235901, 0, 0.0265198)
+shape = SubResource("BoxShape3D_bgdcl")
+
+[node name="spawn_point" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.61061)
