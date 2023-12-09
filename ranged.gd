@@ -5,7 +5,7 @@ extends Marker3D
 var acquisition
 
 var range=350
-var damage=10
+@export var damage=10
 
 var timer=1
 

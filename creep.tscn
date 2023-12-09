@@ -51,6 +51,8 @@ viewport_path = NodePath("sv")
 
 [node name="creep" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_8flh6")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
@@ -74,3 +76,4 @@ speed = 3
 
 [node name="health" parent="." instance=ExtResource("3_cak42")]
 texture = SubResource("ViewportTexture_lofqf")
+regen_rate = 0

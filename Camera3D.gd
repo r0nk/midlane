@@ -20,8 +20,6 @@ func get_under_mouse():
 	var space = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(from,to)
 	var result = space.intersect_ray(query)
-	if(!result.is_empty()):
-		$hud/target_label.text=result.collider.name
 	return result
 
 func _process(delta):

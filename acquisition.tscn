@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://pm7xwdrh0kcj"]
+[gd_scene load_steps=3 format=3 uid="uid://cag77barubfxy"]
 
 [ext_resource type="Script" path="res://acquisition.gd" id="1_xkef6"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g0lyn"]
-radius = 385.083
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hrlht"]
+height = 7.57082
+radius = 13.7267
 
-[node name="acquisition" type="Area2D"]
+[node name="acquisition" type="Area3D"]
 script = ExtResource("1_xkef6")
 
-[node name="cs" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_g0lyn")
-debug_color = Color(0.658824, 0, 0.701961, 0.0823529)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.74305, 0)
+shape = SubResource("CylinderShape3D_hrlht")
+
+[connection signal="body_entered" from="." to="." method="body_entered_or_exited"]
+[connection signal="body_exited" from="." to="." method="body_entered_or_exited"]

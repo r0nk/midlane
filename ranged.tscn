@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0tg7e8jc3h3a"]
+[gd_scene load_steps=2 format=3 uid="uid://dltt2466qrkb6"]
 
 [ext_resource type="Script" path="res://ranged.gd" id="1_wirm1"]
 
-[node name="ranged" type="Node2D"]
+[node name="ranged" type="Marker3D"]
+transform = Transform3D(1.73043, 0, 0, 0, 1.73043, 0, 0, 0, 1.73043, -0.017251, 0.00934458, -3.07613)
 script = ExtResource("1_wirm1")
+acquisition_path = "../../../acquisition"
