@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqpofk77rradg"]
+[gd_scene load_steps=14 format=3 uid="uid://cqpofk77rradg"]
 
 [ext_resource type="Script" path="res://unit.gd" id="1_6hbj7"]
 [ext_resource type="Script" path="res://pathfinding.gd" id="2_qxty2"]
 [ext_resource type="PackedScene" uid="uid://cag77barubfxy" path="res://acquisition.tscn" id="3_e8v8g"]
 [ext_resource type="PackedScene" uid="uid://b82fju5la8bll" path="res://health.tscn" id="3_jx7yv"]
 [ext_resource type="PackedScene" uid="uid://dltt2466qrkb6" path="res://ranged.tscn" id="4_v80cm"]
+[ext_resource type="Script" path="res://skills/explosion.gd" id="6_mg8bu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qw5bq"]
 
@@ -76,9 +77,8 @@ texture = SubResource("ViewportTexture_0by5y")
 [node name="ranged" parent="." instance=ExtResource("4_v80cm")]
 transform = Transform3D(1.73043, 0, 0, 0, 1.73043, 0, 0, 0, 1.73043, -0.017251, 0.531166, -1.25444)
 acquisition_path = "../acquisition"
-damage = 20
 
-[node name="Timer" type="Timer" parent="."]
+[node name="reaquire" type="Timer" parent="."]
 wait_time = 0.33
 autostart = true
 
@@ -86,6 +86,11 @@ autostart = true
 collision_layer = 2
 collision_mask = 2
 
-[connection signal="timeout" from="Timer" to="acquisition" method="process_targeting"]
+[node name="skills" type="Node" parent="."]
+
+[node name="explosion" type="Node" parent="skills"]
+script = ExtResource("6_mg8bu")
+
+[connection signal="timeout" from="reaquire" to="acquisition" method="process_targeting"]
 
 [editable path="acquisition"]

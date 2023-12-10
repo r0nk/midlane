@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://de8dimmt287e6"]
+
+[ext_resource type="Script" path="res://explosion.gd" id="1_dpgp6"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j1kwl"]
+spread = 180.0
+radial_velocity_min = 1.0
+radial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+hue_variation_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h1ga4"]
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_wp0wx"]
+material = SubResource("StandardMaterial3D_h1ga4")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0dxyo"]
+height = 6.82952
+radius = 2.0
+
+[node name="explosion" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_dpgp6")
+
+[node name="particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 16
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_j1kwl")
+draw_pass_1 = SubResource("SphereMesh_wp0wx")
+
+[node name="cs" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_0dxyo")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="expire"]

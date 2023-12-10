@@ -77,3 +77,9 @@ speed = 3
 [node name="health" parent="." instance=ExtResource("3_cak42")]
 texture = SubResource("ViewportTexture_lofqf")
 regen_rate = 0
+
+[node name="bar" parent="health/sv" index="0"]
+max_value = 15.0
+value = 15.0
+
+[editable path="health"]

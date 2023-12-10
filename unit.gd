@@ -1,15 +1,8 @@
 extends CharacterBody3D
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 func _input(event):
+	var bri = $"../Camera3D".get_bedrock_intersection_position()
 	if Input.is_action_just_pressed('move'):
-		$pathfinding.destination=$"../Camera3D".get_bedrock_intersection_position()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+		$pathfinding.destination=bri
+	if Input.is_action_just_pressed('skill_one'):
+		$skills/explosion.activate(bri)

@@ -19,5 +19,5 @@ func body_entered_or_exited(_body):
 	process_targeting()
 
 #this'll be more complicated later
-func target_sort(a,b): #a < b
+func target_sort(a,b): #a < b, reversed for speed
 	return position.distance_to(a.position) < position.distance_to(b.position)

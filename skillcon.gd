@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends ColorRect
 
 
 # Called when the node enters the scene tree for the first time.
@@ -8,8 +8,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$pathfinding.destination=$"../unit".position
-	if(position.distance_to($pathfinding.destination)<2):
-		$"../unit/health/sv/bar".value-=10
-		position-=($pathfinding.destination-position)*0.5
+	$cd.value = %unit/skills/explosion.cooldown
+	pass
 
