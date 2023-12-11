@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg0sv8bluatfq"]
+
+[ext_resource type="Script" path="res://coin.gd" id="1_qslp1"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t02qn"]
+height = 0.156115
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xndmq"]
+albedo_color = Color(1, 0.843137, 0, 1)
+
+[node name="coin" type="CharacterBody3D" groups=["collectable"]]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_qslp1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_t02qn")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+height = 0.15
+sides = 6
+material = SubResource("StandardMaterial3D_xndmq")

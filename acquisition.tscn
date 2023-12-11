@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://acquisition.gd" id="1_xkef6"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_hrlht"]
-height = 7.57082
-radius = 13.7267
+height = 7.5
+radius = 14.0
 
 [node name="acquisition" type="Area3D"]
 script = ExtResource("1_xkef6")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqpofk77rradg"]
+[gd_scene load_steps=16 format=3 uid="uid://cqpofk77rradg"]
 
 [ext_resource type="Script" path="res://unit.gd" id="1_6hbj7"]
 [ext_resource type="Script" path="res://pathfinding.gd" id="2_qxty2"]
 [ext_resource type="PackedScene" uid="uid://cag77barubfxy" path="res://acquisition.tscn" id="3_e8v8g"]
 [ext_resource type="PackedScene" uid="uid://b82fju5la8bll" path="res://health.tscn" id="3_jx7yv"]
+[ext_resource type="Script" path="res://collector.gd" id="4_4b5eo"]
 [ext_resource type="PackedScene" uid="uid://dltt2466qrkb6" path="res://ranged.tscn" id="4_v80cm"]
 [ext_resource type="Script" path="res://skills/explosion.gd" id="6_mg8bu"]
 
@@ -52,6 +53,10 @@ height = 1.66803
 [sub_resource type="ViewportTexture" id="ViewportTexture_0by5y"]
 viewport_path = NodePath("sv")
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_25414"]
+height = 7.5
+radius = 5.0
+
 [node name="unit" type="CharacterBody3D"]
 script = ExtResource("1_6hbj7")
 
@@ -73,6 +78,16 @@ script = ExtResource("2_qxty2")
 [node name="health" parent="." instance=ExtResource("3_jx7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36603, 0)
 texture = SubResource("ViewportTexture_0by5y")
+
+[node name="collector" type="Area3D" parent="."]
+transform = Transform3D(1.73043, 0, 0, 0, 1.73043, 0, 0, 0, 1.73043, -0.017251, 0.531166, -1.25444)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("4_4b5eo")
+
+[node name="cs" type="CollisionShape3D" parent="collector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.11328, 0)
+shape = SubResource("CylinderShape3D_25414")
 
 [node name="ranged" parent="." instance=ExtResource("4_v80cm")]
 transform = Transform3D(1.73043, 0, 0, 0, 1.73043, 0, 0, 0, 1.73043, -0.017251, 0.531166, -1.25444)

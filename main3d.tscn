@@ -1,11 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://0vqxkwa3nw8q"]
+[gd_scene load_steps=20 format=3 uid="uid://0vqxkwa3nw8q"]
 
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_kwj0e"]
 [ext_resource type="Script" path="res://skillcon.gd" id="2_5udsu"]
 [ext_resource type="PackedScene" uid="uid://cqpofk77rradg" path="res://player.tscn" id="2_bypwp"]
+[ext_resource type="FontFile" uid="uid://cjvipsrbvu6ay" path="res://m5x7.ttf" id="2_cxpsj"]
 [ext_resource type="PackedScene" uid="uid://bhek1084fhjrp" path="res://models/tree.glb" id="2_un76p"]
 [ext_resource type="Texture2D" uid="uid://ni5tt4lreqwt" path="res://skills/explosion.png" id="3_i10dt"]
+[ext_resource type="Script" path="res://hud/cash.gd" id="3_uvxae"]
+[ext_resource type="PackedScene" uid="uid://dg0sv8bluatfq" path="res://coin.tscn" id="7_2u5dh"]
 [ext_resource type="PackedScene" uid="uid://rxxo60itn26k" path="res://barracks.tscn" id="8_gqiu1"]
+
+[sub_resource type="Theme" id="Theme_jrs6n"]
+default_font = ExtResource("2_cxpsj")
+default_font_size = 64
 
 [sub_resource type="Gradient" id="Gradient_4ysq2"]
 colors = PackedColorArray(0.696871, 0.696871, 0.696871, 0.623529, 1, 1, 1, 0.941176)
@@ -47,6 +54,16 @@ frustum_offset = Vector2(-0.5, -0.5)
 script = ExtResource("1_kwj0e")
 
 [node name="hud" type="CanvasLayer" parent="Camera3D"]
+
+[node name="cash" type="RichTextLabel" parent="Camera3D/hud"]
+offset_left = 1530.0
+offset_top = 942.0
+offset_right = 1706.0
+offset_bottom = 1017.0
+theme = SubResource("Theme_jrs6n")
+text = "$ 500
+"
+script = ExtResource("3_uvxae")
 
 [node name="skill1" type="ColorRect" parent="Camera3D/hud"]
 anchors_preset = 7
@@ -191,3 +208,6 @@ collision_layer = 32769
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bedrock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 shape = SubResource("WorldBoundaryShape3D_qqc8i")
+
+[node name="coin" parent="." instance=ExtResource("7_2u5dh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6646, 1, 19.7774)

@@ -82,4 +82,6 @@ regen_rate = 0
 max_value = 15.0
 value = 15.0
 
+[connection signal="tree_exiting" from="." to="." method="drop_loot"]
+
 [editable path="health"]
