@@ -1,0 +1,9 @@
+Name
+Art/effect
+Art/icon
+Coding/active_effect
+
+each skill should be a scene
+name is the name of the main node in the scene
+effects are children added to target scenes, sometimes with cooldowns
+

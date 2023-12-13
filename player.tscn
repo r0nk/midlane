@@ -106,6 +106,10 @@ collision_mask = 2
 [node name="explosion" type="Node" parent="skills"]
 script = ExtResource("6_mg8bu")
 
+[node name="cooldown" type="Timer" parent="skills/explosion"]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="timeout" from="reaquire" to="acquisition" method="process_targeting"]
 
 [editable path="acquisition"]
