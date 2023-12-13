@@ -6,6 +6,8 @@ var cash = 0
 
 func collect():
 	cash+=1
+	$coin_sfx.pitch_scale=randf_range(0.9,1.1)
+	$coin_sfx.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
