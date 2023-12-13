@@ -74,6 +74,7 @@ shape = SubResource("CylinderShape3D_tbk12")
 
 [node name="pathfinding" type="Node" parent="."]
 script = ExtResource("2_qxty2")
+speed = 7
 
 [node name="health" parent="." instance=ExtResource("3_jx7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36603, 0)

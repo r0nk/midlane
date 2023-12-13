@@ -13,4 +13,6 @@ func _process(delta):
 	if(position.distance_to($pathfinding.destination)<2):
 		$"../unit/health/sv/bar".value-=10
 		position-=($pathfinding.destination-position)*0.5
+	if(!$human/AnimationPlayer.is_playing()):
+		$human/AnimationPlayer.play("1ArmatureAction")
 
