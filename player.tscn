@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cqpofk77rradg"]
+[gd_scene load_steps=18 format=3 uid="uid://cqpofk77rradg"]
 
 [ext_resource type="Script" path="res://unit.gd" id="1_6hbj7"]
 [ext_resource type="Script" path="res://pathfinding.gd" id="2_qxty2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://collector.gd" id="4_4b5eo"]
 [ext_resource type="PackedScene" uid="uid://dltt2466qrkb6" path="res://ranged.tscn" id="4_v80cm"]
 [ext_resource type="AudioStream" uid="uid://bgmpdnwd01pkh" path="res://sfx/handling_coins_7.wav" id="5_olecb"]
+[ext_resource type="AudioStream" uid="uid://c841tt1ignxaj" path="res://sfx/02_Heal_02.wav" id="6_63pr1"]
 [ext_resource type="Script" path="res://skills/explosion.gd" id="6_mg8bu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qw5bq"]
@@ -94,6 +95,9 @@ shape = SubResource("CylinderShape3D_25414")
 [node name="coin_sfx" type="AudioStreamPlayer3D" parent="collector"]
 stream = ExtResource("5_olecb")
 volume_db = 20.0
+
+[node name="heal_sfx" type="AudioStreamPlayer3D" parent="collector"]
+stream = ExtResource("6_63pr1")
 
 [node name="ranged" parent="." instance=ExtResource("4_v80cm")]
 transform = Transform3D(1.73043, 0, 0, 0, 1.73043, 0, 0, 0, 1.73043, -0.017251, 0.531166, -1.25444)
