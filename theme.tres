@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bmxoq2so1i6uq"]
+
+[ext_resource type="FontFile" uid="uid://cjvipsrbvu6ay" path="res://m5x7.ttf" id="1_biiqa"]
+
+[resource]
+default_font = ExtResource("1_biiqa")
+default_font_size = 64

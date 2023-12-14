@@ -1,16 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://0vqxkwa3nw8q"]
+[gd_scene load_steps=16 format=3 uid="uid://0vqxkwa3nw8q"]
 
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_kwj0e"]
 [ext_resource type="PackedScene" uid="uid://cqpofk77rradg" path="res://player.tscn" id="2_bypwp"]
-[ext_resource type="FontFile" uid="uid://cjvipsrbvu6ay" path="res://m5x7.ttf" id="2_cxpsj"]
 [ext_resource type="PackedScene" uid="uid://bhek1084fhjrp" path="res://models/tree.glb" id="2_un76p"]
+[ext_resource type="Theme" uid="uid://bmxoq2so1i6uq" path="res://theme.tres" id="2_wrot3"]
+[ext_resource type="Texture2D" uid="uid://bqed4e6pfyvfy" path="res://icon.png" id="3_fkrjj"]
+[ext_resource type="Script" path="res://item_store_button.gd" id="3_lgpxs"]
 [ext_resource type="Script" path="res://hud/cash.gd" id="3_uvxae"]
 [ext_resource type="PackedScene" uid="uid://bn7js0gg6oftd" path="res://skillcon.tscn" id="4_2exyh"]
 [ext_resource type="PackedScene" uid="uid://rxxo60itn26k" path="res://barracks.tscn" id="8_gqiu1"]
-
-[sub_resource type="Theme" id="Theme_jrs6n"]
-default_font = ExtResource("2_cxpsj")
-default_font_size = 64
 
 [sub_resource type="Gradient" id="Gradient_j7mj0"]
 colors = PackedColorArray(0.642562, 0.642562, 0.642562, 1, 1, 1, 1, 1)
@@ -42,12 +40,108 @@ script = ExtResource("1_kwj0e")
 
 [node name="hud" type="CanvasLayer" parent="Camera3D"]
 
+[node name="store" type="ColorRect" parent="Camera3D/hud"]
+visible = false
+z_index = -2
+offset_left = 408.0
+offset_top = 151.0
+offset_right = 1382.0
+offset_bottom = 855.0
+color = Color(0, 0, 0, 0.466667)
+
+[node name="exit" type="Button" parent="Camera3D/hud/store"]
+layout_mode = 0
+offset_left = 647.0
+offset_top = 548.0
+offset_right = 915.0
+offset_bottom = 648.0
+theme = ExtResource("2_wrot3")
+text = "Exit Store
+"
+
+[node name="refresh button" type="Button" parent="Camera3D/hud/store"]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 424.0
+offset_right = 918.0
+offset_bottom = 524.0
+theme = ExtResource("2_wrot3")
+text = "Refresh"
+
+[node name="item" type="Button" parent="Camera3D/hud/store"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 47.0
+offset_right = 358.0
+offset_bottom = 620.0
+text = "
+"
+script = ExtResource("3_lgpxs")
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera3D/hud/store/item"]
+position = Vector2(145.25, 153.25)
+scale = Vector2(4.14844, 3.77344)
+texture = ExtResource("3_fkrjj")
+
+[node name="name" type="RichTextLabel" parent="Camera3D/hud/store/item"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00119987
+anchor_top = -0.000395397
+anchor_right = 1.0285
+anchor_bottom = -0.000395397
+offset_left = 16.6484
+offset_top = 270.227
+offset_right = 230.648
+offset_bottom = 381.227
+scale = Vector2(0.508946, 0.378903)
+mouse_filter = 2
+theme = ExtResource("2_wrot3")
+theme_override_font_sizes/normal_font_size = 128
+text = "ROBOT"
+metadata/_edit_use_anchors_ = true
+
+[node name="cost" type="RichTextLabel" parent="Camera3D/hud/store/item"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0704725
+anchor_top = -0.543153
+anchor_right = 0.956831
+anchor_bottom = -0.382594
+offset_left = 16.6484
+offset_top = 270.227
+offset_right = 230.648
+offset_bottom = 381.227
+scale = Vector2(0.508946, 0.378903)
+theme = ExtResource("2_wrot3")
+theme_override_font_sizes/normal_font_size = 256
+text = "$20"
+metadata/_edit_use_anchors_ = true
+
+[node name="description" type="RichTextLabel" parent="Camera3D/hud/store/item"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0114388
+anchor_top = 0.0851194
+anchor_right = 0.956831
+anchor_bottom = 0.905364
+offset_left = 16.6484
+offset_top = 270.227
+offset_right = 230.648
+offset_bottom = 381.227
+scale = Vector2(0.508946, 0.378903)
+mouse_filter = 2
+theme = ExtResource("2_wrot3")
+text = "Increases your movement speed by 1
+"
+metadata/_edit_use_anchors_ = true
+
 [node name="cash" type="RichTextLabel" parent="Camera3D/hud"]
 offset_left = 1530.0
 offset_top = 942.0
 offset_right = 1706.0
 offset_bottom = 1017.0
-theme = SubResource("Theme_jrs6n")
+theme = ExtResource("2_wrot3")
 text = "$ 500
 "
 script = ExtResource("3_uvxae")
@@ -135,3 +229,5 @@ collision_layer = 32769
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bedrock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 shape = SubResource("WorldBoundaryShape3D_qqc8i")
+
+[connection signal="pressed" from="Camera3D/hud/store/item" to="Camera3D/hud/store/item" method="pressed"]
