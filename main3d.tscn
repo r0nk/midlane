@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://0vqxkwa3nw8q"]
+[gd_scene load_steps=17 format=3 uid="uid://0vqxkwa3nw8q"]
 
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_kwj0e"]
 [ext_resource type="PackedScene" uid="uid://cqpofk77rradg" path="res://player.tscn" id="2_bypwp"]
+[ext_resource type="Script" path="res://store.gd" id="2_r5xjx"]
 [ext_resource type="PackedScene" uid="uid://bhek1084fhjrp" path="res://models/tree.glb" id="2_un76p"]
 [ext_resource type="Theme" uid="uid://bmxoq2so1i6uq" path="res://theme.tres" id="2_wrot3"]
 [ext_resource type="Texture2D" uid="uid://bqed4e6pfyvfy" path="res://icon.png" id="3_fkrjj"]
@@ -41,6 +42,7 @@ script = ExtResource("1_kwj0e")
 [node name="hud" type="CanvasLayer" parent="Camera3D"]
 
 [node name="store" type="ColorRect" parent="Camera3D/hud"]
+process_mode = 3
 visible = false
 z_index = -2
 offset_left = 408.0
@@ -48,6 +50,7 @@ offset_top = 151.0
 offset_right = 1382.0
 offset_bottom = 855.0
 color = Color(0, 0, 0, 0.466667)
+script = ExtResource("2_r5xjx")
 
 [node name="exit" type="Button" parent="Camera3D/hud/store"]
 layout_mode = 0
@@ -136,7 +139,18 @@ text = "Increases your movement speed by 1
 "
 metadata/_edit_use_anchors_ = true
 
+[node name="store_button" type="Button" parent="Camera3D/hud"]
+process_mode = 3
+offset_left = 1549.0
+offset_top = 1004.0
+offset_right = 1669.0
+offset_bottom = 1063.0
+theme = ExtResource("2_wrot3")
+text = "store
+"
+
 [node name="cash" type="RichTextLabel" parent="Camera3D/hud"]
+process_mode = 3
 offset_left = 1530.0
 offset_top = 942.0
 offset_right = 1706.0
@@ -230,4 +244,6 @@ collision_layer = 32769
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 shape = SubResource("WorldBoundaryShape3D_qqc8i")
 
+[connection signal="pressed" from="Camera3D/hud/store/exit" to="Camera3D/hud/store" method="toggle_store"]
 [connection signal="pressed" from="Camera3D/hud/store/item" to="Camera3D/hud/store/item" method="pressed"]
+[connection signal="pressed" from="Camera3D/hud/store_button" to="Camera3D/hud/store" method="toggle_store"]
