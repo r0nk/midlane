@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EffectResource" load_steps=2 format=3 uid="uid://do78w6mii3k24"]
+
+[ext_resource type="Script" path="res://effects/EffectResource.gd" id="1_buak0"]
+
+[resource]
+script = ExtResource("1_buak0")
+key = "move_speed"
+addition = 0.0
+multiplication = 0.5
+duration = 8.5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cqpofk77rradg"]
+[gd_scene load_steps=19 format=3 uid="uid://cqpofk77rradg"]
 
 [ext_resource type="Script" path="res://unit.gd" id="1_6hbj7"]
 [ext_resource type="Script" path="res://pathfinding.gd" id="2_qxty2"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bgmpdnwd01pkh" path="res://sfx/handling_coins_7.wav" id="5_olecb"]
 [ext_resource type="AudioStream" uid="uid://c841tt1ignxaj" path="res://sfx/02_Heal_02.wav" id="6_63pr1"]
 [ext_resource type="Script" path="res://skills/explosion.gd" id="6_mg8bu"]
+[ext_resource type="Script" path="res://stats.gd" id="10_vfm22"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qw5bq"]
 
@@ -119,6 +120,9 @@ script = ExtResource("6_mg8bu")
 [node name="cooldown" type="Timer" parent="skills/explosion"]
 wait_time = 5.0
 one_shot = true
+
+[node name="stats" type="Node" parent="."]
+script = ExtResource("10_vfm22")
 
 [connection signal="timeout" from="reaquire" to="acquisition" method="process_targeting"]
 
