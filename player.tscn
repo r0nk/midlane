@@ -77,14 +77,13 @@ shape = SubResource("CylinderShape3D_tbk12")
 
 [node name="pathfinding" type="Node" parent="."]
 script = ExtResource("2_qxty2")
-speed = 7
 
 [node name="health" parent="." instance=ExtResource("3_jx7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36603, 0)
 texture = SubResource("ViewportTexture_0by5y")
 
 [node name="collector" type="Area3D" parent="."]
-transform = Transform3D(1.73043, 0, 0, 0, 1.73043, 0, 0, 0, 1.73043, -0.017251, 0.531166, -1.25444)
+transform = Transform3D(1.73043, 0, 0, 0, 1.73043, 0, 0, 0, 1.73043, 0, 0, 0)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("4_4b5eo")
@@ -123,6 +122,7 @@ one_shot = true
 
 [node name="stats" type="Node" parent="."]
 script = ExtResource("10_vfm22")
+move_speed = 5
 
 [connection signal="timeout" from="reaquire" to="acquisition" method="process_targeting"]
 
