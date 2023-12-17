@@ -5,7 +5,7 @@ extends CharacterBody3D
 
 func drop_loot():
 	var c = coin.instantiate()
-	c.global_position = global_position
+	c.position = global_position
 	get_tree().get_root().get_node("main").add_child.call_deferred(c)
 
 func _process(delta):

@@ -1,4 +1,4 @@
 extends RichTextLabel
 
-func _process(delta):
+func _process(_delta):
 	text = "$ "+str(%unit/collector.cash)

@@ -26,17 +26,23 @@ func apply_stat_links():
 	$"../pathfinding".speed=get_stat("move_speed")
 	$"../ranged".damage=get_stat("attack_damage")
 
-func _process(delta):
+func effect_timers(delta):
 	var index = 0
 	while index < effects.size(): #not 'for' because we modify inside.
+		if(effects[index].permanent):
+			index+=1
+			continue
 		effects[index].duration-=delta
 		if(effects[index].duration<=0):
 			effects.remove_at(index)
 		index+=1
+
+func _process(delta):
+	effect_timers(delta)
 	apply_stat_links()
 
 func add_effect(effect):
-	if(effect.duration==0):
+	if(effect.duration==0 and !effect.permanent):
 		apply_effect(effect)
 	else:
 		effects.append(effect)

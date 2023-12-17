@@ -1,6 +1,6 @@
 extends Area3D
 
-var pull_speed=0.2
+var pull_speed=20
 
 var cash = 0
 
@@ -19,7 +19,7 @@ func _process(delta):
 	for body in bodies:
 		var bp = body.global_position
 		var p = global_position
-		body.position-=(bp-p).normalized()*pull_speed
+		body.position-=(bp-p).normalized()*pull_speed*delta
 		if(p.distance_to(bp) <= 1):
 			collect(body)
 			body.queue_free()

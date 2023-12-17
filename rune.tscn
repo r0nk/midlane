@@ -30,4 +30,4 @@ light_energy = 5.0
 
 [node name="resource_picker" type="Node" parent="."]
 script = ExtResource("3_6ndpi")
-path = "res://runes/"
+resource_path = "res://runes"
