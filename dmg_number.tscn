@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg8530d04kwt7"]
+
+[ext_resource type="FontFile" uid="uid://cjvipsrbvu6ay" path="res://m5x7.ttf" id="1_dk8f5"]
+[ext_resource type="Script" path="res://dmg_number.gd" id="2_mhky8"]
+
+[node name="dmg_number" type="Label3D"]
+billboard = 1
+text = "300
+"
+font = ExtResource("1_dk8f5")
+script = ExtResource("2_mhky8")

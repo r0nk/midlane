@@ -24,12 +24,15 @@ func apply_effect(effect):
 
 func apply_stat_links():
 	$"../pathfinding".speed=get_stat("move_speed")
+	$"../ranged".damage=get_stat("attack_damage")
 
 func _process(delta):
-	for index in effects.size():
+	var index = 0
+	while index < effects.size(): #not 'for' because we modify inside.
 		effects[index].duration-=delta
 		if(effects[index].duration<=0):
 			effects.remove_at(index)
+		index+=1
 	apply_stat_links()
 
 func add_effect(effect):
@@ -37,4 +40,3 @@ func add_effect(effect):
 		apply_effect(effect)
 	else:
 		effects.append(effect)
-

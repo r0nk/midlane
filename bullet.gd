@@ -13,7 +13,7 @@ func _process(delta):
 		position-=(position-target.position).normalized() * 1
 	else:
 		if(target.has_node("health")):
-			target.get_node("health/sv/bar").value-=damage
+			target.get_node("health").hurt(damage)
 		else:
 			print("attempted to damage a target with no health")
 		queue_free()

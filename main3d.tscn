@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://item_store_button.gd" id="3_lgpxs"]
 [ext_resource type="Script" path="res://hud/cash.gd" id="3_uvxae"]
 [ext_resource type="PackedScene" uid="uid://bn7js0gg6oftd" path="res://skillcon.tscn" id="4_2exyh"]
+[ext_resource type="Script" path="res://hud/status_effects.gd" id="6_ittic"]
 [ext_resource type="PackedScene" uid="uid://rxxo60itn26k" path="res://barracks.tscn" id="8_gqiu1"]
-[ext_resource type="PackedScene" uid="uid://73lda1xw2djb" path="res://rune.tscn" id="11_a74h7"]
 
 [sub_resource type="Gradient" id="Gradient_j7mj0"]
 colors = PackedColorArray(0.642562, 0.642562, 0.642562, 1, 1, 1, 1, 1)
@@ -150,6 +150,16 @@ theme = ExtResource("2_wrot3")
 text = "store
 "
 
+[node name="status_effects" type="RichTextLabel" parent="Camera3D/hud"]
+offset_left = 40.0
+offset_top = 709.0
+offset_right = 460.0
+offset_bottom = 899.0
+theme = ExtResource("2_wrot3")
+text = "Effect 	30	1.5
+haste 8 x2 "
+script = ExtResource("6_ittic")
+
 [node name="cash" type="RichTextLabel" parent="Camera3D/hud"]
 process_mode = 3
 offset_left = 1530.0
@@ -244,9 +254,6 @@ collision_layer = 32769
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bedrock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 shape = SubResource("WorldBoundaryShape3D_qqc8i")
-
-[node name="rune" parent="." instance=ExtResource("11_a74h7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60434, -23)
 
 [connection signal="pressed" from="Camera3D/hud/store/exit" to="Camera3D/hud/store" method="toggle_store"]
 [connection signal="pressed" from="Camera3D/hud/store/item" to="Camera3D/hud/store/item" method="pressed"]
