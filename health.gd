@@ -6,6 +6,7 @@ extends Sprite3D
 var dmgn = load("res://dmg_number.tscn")
 
 func hurt(damage):
+	$hurt_sfx.play()
 	var instance = dmgn.instantiate()
 	instance.text=str(damage)
 	get_tree().get_root().get_node("main").add_child(instance)
@@ -17,4 +18,9 @@ func _process(delta):
 	if($sv/bar.value <=0):
 		get_parent().queue_free()
 	$sv/bar.value+=delta*regen_rate
+	$sv/follow_bar.max_value=$sv/bar.max_value
+	if($sv/follow_bar.value > $sv/bar.value):
+		$sv/follow_bar.value-=delta*$sv/bar.max_value
+	else:
+		$sv/follow_bar.value=$sv/bar.value
 

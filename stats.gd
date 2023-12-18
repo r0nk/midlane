@@ -3,11 +3,13 @@ extends Node
 
 @export var move_speed = 10
 @export var attack_damage = 10
+@export var attack_speed = 10
+@export var passive_income = 1
 
 @export var effects: Array[EffectResource]
 
 func get_stat(name):
-	assert(get(name),"Effect targets unknown key")
+	assert(name in $".","Effect targets unknown key:"+name)
 	var value = get(name)
 	for effect in effects:
 		if(effect.key==name):
@@ -25,6 +27,8 @@ func apply_effect(effect):
 func apply_stat_links():
 	$"../pathfinding".speed=get_stat("move_speed")
 	$"../ranged".damage=get_stat("attack_damage")
+	$"../ranged".speed=get_stat("attack_speed")
+	$"../collector".passive_income=get_stat("passive_income")
 
 func effect_timers(delta):
 	var index = 0

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=7 format=3 uid="uid://b1kwm1xyte4eq"]
+
+[ext_resource type="Script" path="res://effects/EffectResource.gd" id="1_8t28k"]
+[ext_resource type="Script" path="res://items/ItemResource.gd" id="2_qo4jq"]
+
+[sub_resource type="Resource" id="Resource_kvf16"]
+script = ExtResource("1_8t28k")
+key = "passive_income"
+addition = 1.0
+multiplication = 1.0
+duration = 0.0
+permanent = false
+
+[sub_resource type="Gradient" id="Gradient_5a5cc"]
+colors = PackedColorArray(1, 0.850459, 0, 1, 0.0856797, 1, 0.112182, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vrw4d"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aqn4u"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_5a5cc")
+noise = SubResource("FastNoiseLite_vrw4d")
+
+[resource]
+script = ExtResource("2_qo4jq")
+name = "Investment"
+texture = SubResource("NoiseTexture2D_aqn4u")
+effects = Array[ExtResource("1_8t28k")]([SubResource("Resource_kvf16")])
+cost = 0

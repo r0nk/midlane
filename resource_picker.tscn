@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjmjapks551fc"]
+
+[ext_resource type="Script" path="res://resource_picker.gd" id="1_dwsug"]
+
+[node name="resource_picker" type="Node"]
+script = ExtResource("1_dwsug")
+resource_path = "res://runes"

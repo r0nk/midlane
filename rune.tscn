@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://73lda1xw2djb"]
 
 [ext_resource type="Script" path="res://rune.gd" id="1_7vrvk"]
-[ext_resource type="Script" path="res://resource_picker.gd" id="3_6ndpi"]
+[ext_resource type="PackedScene" uid="uid://bjmjapks551fc" path="res://resource_picker.tscn" id="2_xj31f"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_x0yhc"]
 height = 1.0
@@ -28,6 +28,4 @@ material = SubResource("StandardMaterial3D_5guet")
 light_color = Color(0, 0.937255, 1, 1)
 light_energy = 5.0
 
-[node name="resource_picker" type="Node" parent="."]
-script = ExtResource("3_6ndpi")
-resource_path = "res://runes"
+[node name="resource_picker" parent="." instance=ExtResource("2_xj31f")]

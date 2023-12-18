@@ -4,8 +4,10 @@ extends Marker3D
 @export var acquisition_path = "../acquistion"
 var acquisition
 
+
 var range=350
 @export var damage=10
+@export var speed = 10
 
 var timer=1
 
@@ -34,7 +36,7 @@ func _process(delta):
 	if is_instance_valid(acquisition.target) and global_position.distance_to(acquisition.target.position) < range:
 		timer-=delta
 		if(timer<=0):
-			timer=1
+			timer=10/speed
 			attack(acquisition.target)
 	else:
 		timer=0

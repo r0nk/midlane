@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=7 format=3 uid="uid://b5kwnlbqw3b2p"]
+
+[ext_resource type="Script" path="res://effects/EffectResource.gd" id="1_xsb1c"]
+[ext_resource type="Script" path="res://items/ItemResource.gd" id="2_e3g2f"]
+
+[sub_resource type="Resource" id="Resource_sce4h"]
+script = ExtResource("1_xsb1c")
+key = "attack_damage"
+addition = 1.0
+multiplication = 1.0
+duration = 0.0
+permanent = true
+
+[sub_resource type="Gradient" id="Gradient_2m3in"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.0381045, 0.00676143, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ecq82"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o2n4l"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_2m3in")
+noise = SubResource("FastNoiseLite_ecq82")
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_e3g2f")
+name = "damage"
+texture = SubResource("NoiseTexture2D_o2n4l")
+effects = Array[ExtResource("1_xsb1c")]([SubResource("Resource_sce4h")])
+cost = 0

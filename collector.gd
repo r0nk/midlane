@@ -2,7 +2,9 @@ extends Area3D
 
 var pull_speed=20
 
-var cash = 0
+var cash = 0.0
+
+var passive_income = 0.0
 
 func collect(body):
 	if body.has_method("collect"):
@@ -16,6 +18,7 @@ func collect(body):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var bodies = get_overlapping_bodies()
+	cash +=passive_income*delta
 	for body in bodies:
 		var bp = body.global_position
 		var p = global_position

@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=8 format=3 uid="uid://ch4cmckjwnifc"]
+
+[ext_resource type="Script" path="res://effects/EffectResource.gd" id="1_qphul"]
+[ext_resource type="Script" path="res://items/ItemResource.gd" id="2_5mfu2"]
+
+[sub_resource type="Resource" id="Resource_m6mrw"]
+script = ExtResource("1_qphul")
+key = "move_speed"
+addition = -1.0
+multiplication = 1.0
+duration = 0.0
+permanent = true
+
+[sub_resource type="Resource" id="Resource_cp3qx"]
+script = ExtResource("1_qphul")
+key = "attack_speed"
+addition = 1.0
+multiplication = 1.0
+duration = 0.0
+permanent = true
+
+[sub_resource type="Gradient" id="Gradient_8i87r"]
+colors = PackedColorArray(0, 0.960563, 1, 1, 0, 0.0105903, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bfd8y"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nu4p5"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_8i87r")
+noise = SubResource("FastNoiseLite_bfd8y")
+
+[resource]
+script = ExtResource("2_5mfu2")
+name = "Stand and Deliver"
+texture = SubResource("NoiseTexture2D_nu4p5")
+effects = Array[ExtResource("1_qphul")]([SubResource("Resource_m6mrw"), SubResource("Resource_cp3qx")])
+cost = 0
