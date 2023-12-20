@@ -1,7 +1,7 @@
 [gd_scene load_steps=46 format=3 uid="uid://b6a0ritw02bxx"]
 
 [ext_resource type="Script" path="res://creep3D.gd" id="1_8flh6"]
-[ext_resource type="Script" path="res://pathfinding.gd" id="2_hby8k"]
+[ext_resource type="PackedScene" uid="uid://cnl7brfca7wgp" path="res://pathfinding.tscn" id="2_13qf1"]
 [ext_resource type="PackedScene" uid="uid://b82fju5la8bll" path="res://health.tscn" id="3_cak42"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tbk12"]
@@ -502,8 +502,7 @@ script = ExtResource("1_8flh6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.158581, 0)
 shape = SubResource("CylinderShape3D_tbk12")
 
-[node name="pathfinding" type="Node" parent="."]
-script = ExtResource("2_hby8k")
+[node name="pathfinding" parent="." instance=ExtResource("2_13qf1")]
 
 [node name="health" parent="." instance=ExtResource("3_cak42")]
 texture = SubResource("ViewportTexture_lofqf")

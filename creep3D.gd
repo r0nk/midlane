@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 @onready var coin = load("res://coin.tscn")
 
 func drop_loot():

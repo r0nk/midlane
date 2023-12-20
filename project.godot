@@ -72,7 +72,10 @@ toggle_store={
 
 [layer_names]
 
+3d_physics/layer_1="physical"
+3d_physics/layer_2="enemy_hit"
 3d_physics/layer_3="collectables"
+3d_physics/layer_4="player_hit"
 
 [physics]
 

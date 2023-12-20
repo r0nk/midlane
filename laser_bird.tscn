@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bghd3cw2o8nc8"]
+
+[ext_resource type="Script" path="res://laser_bird.gd" id="1_iqwp1"]
+[ext_resource type="PackedScene" uid="uid://d4dbmcut3fk8t" path="res://models/bird.glb" id="1_t5bwa"]
+[ext_resource type="PackedScene" uid="uid://b82fju5la8bll" path="res://health.tscn" id="2_box4b"]
+[ext_resource type="Script" path="res://blaster.gd" id="2_d210r"]
+[ext_resource type="PackedScene" uid="uid://cnl7brfca7wgp" path="res://pathfinding.tscn" id="2_ge2yq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1t8g5"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3frqy"]
+viewport_path = NodePath("sv")
+
+[node name="laser_bird" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_iqwp1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1t8g5")
+
+[node name="blaster" type="Marker3D" parent="."]
+transform = Transform3D(-1, -1.50996e-07, 6.60024e-15, 0, -4.37114e-08, -1, 1.50996e-07, -1, 4.37114e-08, 0, 0, 0)
+script = ExtResource("2_d210r")
+
+[node name="target" type="Marker3D" parent="blaster"]
+transform = Transform3D(-1, 0, 1.50996e-07, -1.50996e-07, -4.37114e-08, -1, 6.60024e-15, -1, 4.37114e-08, 1.5789, 3.89403e-07, 0)
+
+[node name="health" parent="." instance=ExtResource("2_box4b")]
+transform = Transform3D(-1, -1.50996e-07, 6.60024e-15, 0, -4.37114e-08, -1, 1.50996e-07, -1, 4.37114e-08, -0.0290722, 0.59385, -0.0123613)
+texture = SubResource("ViewportTexture_3frqy")
+regen_rate = 1
+
+[node name="bar" parent="health/sv" index="0"]
+max_value = 20.0
+value = 20.0
+
+[node name="pathfinding" parent="." instance=ExtResource("2_ge2yq")]
+encircle = true
+
+[node name="bird" parent="." instance=ExtResource("1_t5bwa")]
+transform = Transform3D(-0.3, -4.52987e-08, 1.98007e-15, 0, -1.31134e-08, -0.3, 4.52987e-08, -0.3, 1.31134e-08, 0.131648, 0, 0.110629)
+
+[node name="Skeleton3D" parent="bird/Armature" index="0"]
+bones/4/rotation = Quaternion(-0.493848, 0.231828, 0.131566, 0.827684)
+bones/5/rotation = Quaternion(-0.218441, 0.042444, 0.364439, 0.904249)
+bones/6/rotation = Quaternion(0.516238, -0.260147, 0.141452, 0.803625)
+bones/7/rotation = Quaternion(0.221679, -0.0351072, 0.357405, 0.90658)
+
+[editable path="health"]
+[editable path="bird"]

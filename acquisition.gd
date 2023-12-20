@@ -3,6 +3,9 @@ extends Area3D
 var root
 @onready var target
 
+func _ready():
+	process_targeting()
+
 func process_targeting():
 	var bodies = get_overlapping_bodies()
 	if(!has_overlapping_bodies()):

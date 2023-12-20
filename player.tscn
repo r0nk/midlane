@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cqpofk77rradg"]
+[gd_scene load_steps=22 format=3 uid="uid://cqpofk77rradg"]
 
 [ext_resource type="Script" path="res://unit.gd" id="1_6hbj7"]
 [ext_resource type="Script" path="res://pathfinding.gd" id="2_qxty2"]
@@ -8,7 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dltt2466qrkb6" path="res://ranged.tscn" id="4_v80cm"]
 [ext_resource type="AudioStream" uid="uid://bgmpdnwd01pkh" path="res://sfx/handling_coins_7.wav" id="5_olecb"]
 [ext_resource type="AudioStream" uid="uid://c841tt1ignxaj" path="res://sfx/02_Heal_02.wav" id="6_63pr1"]
-[ext_resource type="Script" path="res://skills/explosion.gd" id="6_mg8bu"]
+[ext_resource type="Script" path="res://skillslot.gd" id="9_mupni"]
+[ext_resource type="Script" path="res://skills/SkillResource.gd" id="10_3d4co"]
 [ext_resource type="Script" path="res://stats.gd" id="10_vfm22"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qw5bq"]
@@ -60,7 +61,31 @@ viewport_path = NodePath("sv")
 height = 7.5
 radius = 8.0
 
+[sub_resource type="GDScript" id="GDScript_6yinx"]
+script/source = "extends Node
+
+@onready var explosion = load(\"res://explosion.tscn\")
+
+func activate(target):
+#	spawn explosion
+	if($cooldown.time_left>0):
+		return
+	$cooldown.start()
+	var e = explosion.instantiate()
+	e.position=target
+	get_tree().get_root().get_node(\"main\").add_child(e)
+	pass
+"
+
+[sub_resource type="Resource" id="Resource_20gbc"]
+script = ExtResource("10_3d4co")
+name = ""
+cooldown = 1.0
+targeting = 0
+
 [node name="unit" type="CharacterBody3D"]
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_6hbj7")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
@@ -115,11 +140,15 @@ collision_mask = 2
 [node name="skills" type="Node" parent="."]
 
 [node name="explosion" type="Node" parent="skills"]
-script = ExtResource("6_mg8bu")
+script = SubResource("GDScript_6yinx")
 
 [node name="cooldown" type="Timer" parent="skills/explosion"]
 wait_time = 5.0
 one_shot = true
+
+[node name="skill2" type="Node" parent="skills"]
+script = ExtResource("9_mupni")
+skill = SubResource("Resource_20gbc")
 
 [node name="stats" type="Node" parent="."]
 script = ExtResource("10_vfm22")
