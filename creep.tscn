@@ -492,7 +492,7 @@ _data = {
 "1ArmatureAction": SubResource("Animation_ona2v")
 }
 
-[node name="creep" type="CharacterBody3D"]
+[node name="creep" type="CharacterBody3D" groups=["enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 3
 collision_mask = 3
@@ -703,6 +703,6 @@ libraries = {
 speed_scale = 1.5
 movie_quit_on_finish = true
 
-[connection signal="tree_exiting" from="." to="." method="drop_loot"]
+[connection signal="die" from="health" to="." method="die"]
 
 [editable path="health"]

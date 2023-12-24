@@ -2,6 +2,11 @@ extends Sprite3D
 
 @export var regen_rate = 10
 
+@export var free_on_death=true
+
+
+signal hit(damage)
+signal die()
 
 var dmgn = load("res://dmg_number.tscn")
 
@@ -12,11 +17,14 @@ func hurt(damage):
 	get_tree().get_root().get_node("main").add_child(instance)
 	instance.global_position=global_position
 	$sv/bar.value-=damage
+	hit.emit(damage)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if($sv/bar.value <=0):
-		get_parent().queue_free()
+		die.emit()
+		if(free_on_death):
+			get_parent().queue_free()
 	$sv/bar.value+=delta*regen_rate
 	$sv/follow_bar.max_value=$sv/bar.max_value
 	if($sv/follow_bar.value > $sv/bar.value):

@@ -9,7 +9,7 @@ size = Vector3(5, 1, 1)
 shading_mode = 0
 albedo_color = Color(0, 0.976471, 1, 1)
 
-[node name="laser_projectile" type="CharacterBody3D"]
+[node name="laser_projectile" type="CharacterBody3D" groups=["projectiles"]]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 collision_layer = 8
 collision_mask = 8

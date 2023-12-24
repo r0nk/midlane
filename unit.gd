@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+func die():
+	get_parent().restart_game()
+
 func _input(event):
 	var bri = $"../Camera3D".get_bedrock_intersection_position()
 	if Input.is_action_just_pressed('move'):

@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 @onready var coin = load("res://coin.tscn")
 
+func die():
+	drop_loot()
+
 func drop_loot():
 	var c = coin.instantiate()
 	c.position = global_position
@@ -10,7 +13,7 @@ func drop_loot():
 func _process(delta):
 	$pathfinding.destination=$"../unit".position
 	if(position.distance_to($pathfinding.destination)<2):
-		$"../unit/health/sv/bar".value-=10
+		$"../unit/health".hurt(10)
 		position-=($pathfinding.destination-position)*0.5
 	if(!$human/AnimationPlayer.is_playing()):
 		$human/AnimationPlayer.play("1ArmatureAction")

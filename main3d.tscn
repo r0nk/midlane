@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://0vqxkwa3nw8q"]
+[gd_scene load_steps=19 format=3 uid="uid://0vqxkwa3nw8q"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_aiprc"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_kwj0e"]
 [ext_resource type="PackedScene" uid="uid://cqpofk77rradg" path="res://player.tscn" id="2_bypwp"]
 [ext_resource type="Script" path="res://store.gd" id="2_r5xjx"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://p7gky5cb546c" path="res://item_button.tscn" id="4_acpd2"]
 [ext_resource type="Script" path="res://hud/status_effects.gd" id="6_ittic"]
 [ext_resource type="PackedScene" uid="uid://rxxo60itn26k" path="res://barracks.tscn" id="8_gqiu1"]
+[ext_resource type="Script" path="res://addons/godot_rl_agents/sync.gd" id="11_dvqrq"]
 
 [sub_resource type="Gradient" id="Gradient_j7mj0"]
 colors = PackedColorArray(0.642562, 0.642562, 0.642562, 1, 1, 1, 1, 1)
@@ -31,6 +33,7 @@ albedo_texture = SubResource("NoiseTexture2D_t416j")
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qqc8i"]
 
 [node name="main" type="Node3D"]
+script = ExtResource("1_aiprc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, -0.579228, 0.40558, 0, 0.573576, 0.819152, -0.707107, -0.579228, 0.40558, 0, 30, 0)
@@ -206,6 +209,9 @@ collision_layer = 32769
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bedrock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 shape = SubResource("WorldBoundaryShape3D_qqc8i")
+
+[node name="Sync" type="Node" parent="."]
+script = ExtResource("11_dvqrq")
 
 [connection signal="pressed" from="Camera3D/hud/store/exit" to="Camera3D/hud/store" method="toggle_store"]
 [connection signal="pressed" from="Camera3D/hud/store/refresh button" to="Camera3D/hud/store" method="refresh_all"]
