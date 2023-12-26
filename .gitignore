@@ -3,6 +3,5 @@
 *.wav
 *.swp
 .godot/*
-addons/*
 script_templates/*
 export/*
