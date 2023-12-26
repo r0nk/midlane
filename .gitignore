@@ -1,6 +1,4 @@
 *.import
-*.png
-*.wav
 *.swp
 .godot/*
 script_templates/*
