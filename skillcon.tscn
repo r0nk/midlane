@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn7js0gg6oftd"]
+[gd_scene load_steps=8 format=3 uid="uid://bn7js0gg6oftd"]
 
 [ext_resource type="Script" path="res://skillcon.gd" id="1_v5tn4"]
-[ext_resource type="Texture2D" uid="uid://ni5tt4lreqwt" path="res://skills/explosion.png" id="2_vc8pd"]
 
 [sub_resource type="Gradient" id="Gradient_4ysq2"]
 colors = PackedColorArray(0.696871, 0.696871, 0.696871, 0.623529, 1, 1, 1, 0.941176)
@@ -13,6 +12,18 @@ width = 100
 height = 100
 color_ramp = SubResource("Gradient_4ysq2")
 noise = SubResource("FastNoiseLite_jbc0w")
+
+[sub_resource type="Gradient" id="Gradient_kprvb"]
+colors = PackedColorArray(0.655304, 0.392415, 2.88785e-07, 1, 0.436058, 5.95618e-07, 9.62615e-08, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bei5y"]
+seed = 10
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sj7dg"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_kprvb")
+noise = SubResource("FastNoiseLite_bei5y")
 
 [node name="skill1" type="ColorRect"]
 anchors_preset = 7
@@ -30,6 +41,7 @@ color = Color(0.270588, 0.262745, 0.262745, 1)
 script = ExtResource("1_v5tn4")
 
 [node name="cd" type="TextureProgressBar" parent="."]
+visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
@@ -48,4 +60,4 @@ texture_progress = SubResource("NoiseTexture2D_y7qu2")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(52, 47.5)
 scale = Vector2(1.59375, 1.56452)
-texture = ExtResource("2_vc8pd")
+texture = SubResource("NoiseTexture2D_sj7dg")

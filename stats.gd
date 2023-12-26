@@ -8,14 +8,14 @@ extends Node
 
 @export var effects: Array[EffectResource]
 
-func get_stat(name):
-	assert(name in $".","Effect targets unknown key:"+name)
-	var value = get(name)
+func get_stat(key):
+	assert(key in $".","Effect targets unknown key:"+key)
+	var value = get(key)
 	for effect in effects:
-		if(effect.key==name):
+		if(effect.key==key):
 			value+=effect.addition
 	for effect in effects:
-		if(effect.key==name):
+		if(effect.key==key):
 			value*=effect.multiplication
 	return value
 

@@ -13,7 +13,7 @@ func _ready():
 	cooldown = target_skill.get_node("cooldown")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	$cd.max_value = cooldown.wait_time
 	$cd.value = cooldown.time_left
 

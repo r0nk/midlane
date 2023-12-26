@@ -1,6 +1,6 @@
 extends Node3D
 
-func player_died(node):
+func player_died(_node):
 	restart_game()
 
 func restart_game():

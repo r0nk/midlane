@@ -22,7 +22,7 @@ func get_under_mouse():
 	var result = space.intersect_ray(query)
 	return result
 
-func _process(delta):
+func _process(_delta):
 	get_under_mouse()
 
 func _input(event):
