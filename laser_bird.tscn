@@ -172,9 +172,6 @@ encircle = true
 [node name="bird" type="Node3D" parent="."]
 transform = Transform3D(-0.3, -4.52987e-08, 1.98007e-15, 0, -1.31134e-08, -0.3, 4.52987e-08, -0.3, 1.31134e-08, 0.131648, 0, 0.110629)
 
-[node name="Empty" type="Node3D" parent="bird"]
-transform = Transform3D(-2.46489, 1.86094e-07, 1.86094e-07, -1.86094e-07, 0, -2.46489, -1.86094e-07, -2.46489, 0, -1.33913, -2.44962, -0.180149)
-
 [node name="Armature" type="Node3D" parent="bird"]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0.669563, 0, -0.180149)
 
