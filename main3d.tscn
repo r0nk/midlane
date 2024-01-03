@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://0vqxkwa3nw8q"]
+[gd_scene load_steps=20 format=3 uid="uid://0vqxkwa3nw8q"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_aiprc"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_kwj0e"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://hud/status_effects.gd" id="6_ittic"]
 [ext_resource type="PackedScene" uid="uid://rxxo60itn26k" path="res://barracks.tscn" id="8_gqiu1"]
 [ext_resource type="Script" path="res://addons/godot_rl_agents/sync.gd" id="11_dvqrq"]
+[ext_resource type="Script" path="res://logger.gd" id="13_bd0lf"]
 
 [sub_resource type="Gradient" id="Gradient_j7mj0"]
 colors = PackedColorArray(0.642562, 0.642562, 0.642562, 1, 1, 1, 1, 1)
@@ -212,6 +213,10 @@ shape = SubResource("WorldBoundaryShape3D_qqc8i")
 
 [node name="Sync" type="Node" parent="."]
 script = ExtResource("11_dvqrq")
+
+[node name="logger" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("13_bd0lf")
 
 [connection signal="pressed" from="Camera3D/hud/store/exit" to="Camera3D/hud/store" method="toggle_store"]
 [connection signal="pressed" from="Camera3D/hud/store/refresh button" to="Camera3D/hud/store" method="refresh_all"]
