@@ -5,6 +5,8 @@ extends Node
 @export var attack_damage = 10
 @export var attack_speed = 10
 @export var passive_income = 1
+@export var dodge_chance = 0
+@export var collector_range = 6
 
 @export var effects: Array[EffectResource]
 
@@ -26,9 +28,14 @@ func apply_effect(effect):
 
 func apply_stat_links():
 	$"../pathfinding".speed=get_stat("move_speed")
+
 	$"../ranged".damage=get_stat("attack_damage")
 	$"../ranged".speed=get_stat("attack_speed")
+
 	$"../collector".passive_income=get_stat("passive_income")
+	$"../collector/cs".radius=get_stat("collector_range")
+
+	$"../health".dodge_chance=get_stat("dodge_chance")/100.0
 
 func effect_timers(delta):
 	var index = 0

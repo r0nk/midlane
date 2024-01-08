@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=8 format=3 uid="uid://brl2jh1rvkuhd"]
+
+[ext_resource type="Script" path="res://effects/EffectResource.gd" id="1_xhsca"]
+[ext_resource type="Script" path="res://items/ItemResource.gd" id="2_cqktt"]
+
+[sub_resource type="Resource" id="Resource_uvrml"]
+script = ExtResource("1_xhsca")
+key = "collector_range"
+addition = 3.0
+multiplication = 1.0
+duration = 0.0
+permanent = true
+
+[sub_resource type="Resource" id="Resource_v6fpg"]
+script = ExtResource("1_xhsca")
+key = "passive_income"
+addition = -1.0
+multiplication = 1.0
+duration = 0.0
+permanent = true
+
+[sub_resource type="Gradient" id="Gradient_odoff"]
+offsets = PackedFloat32Array(0, 0.98893)
+colors = PackedColorArray(0, 0, 1, 1, 0, 1, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uscj5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yvk6p"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_odoff")
+noise = SubResource("FastNoiseLite_uscj5")
+
+[resource]
+script = ExtResource("2_cqktt")
+name = "Active Investing"
+texture = SubResource("NoiseTexture2D_yvk6p")
+effects = Array[ExtResource("1_xhsca")]([SubResource("Resource_uvrml"), SubResource("Resource_v6fpg")])
+cost = 0

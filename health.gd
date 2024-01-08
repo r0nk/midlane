@@ -1,9 +1,9 @@
 extends Sprite3D
 
 @export var regen_rate = 10
+@export var dodge_chance = 0.0
 
 @export var free_on_death=true
-
 
 signal hit(damage)
 signal die()
@@ -11,6 +11,9 @@ signal die()
 var dmgn = load("res://dmg_number.tscn")
 
 func hurt(damage):
+	if(randf()<dodge_chance):
+		#dodge_sfx.play()
+		return
 	$hurt_sfx.play()
 	var instance = dmgn.instantiate()
 	instance.text=str(damage)

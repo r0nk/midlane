@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://0vqxkwa3nw8q"]
+[gd_scene load_steps=21 format=3 uid="uid://0vqxkwa3nw8q"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_aiprc"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_kwj0e"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bn7js0gg6oftd" path="res://skillcon.tscn" id="4_2exyh"]
 [ext_resource type="PackedScene" uid="uid://p7gky5cb546c" path="res://item_button.tscn" id="4_acpd2"]
 [ext_resource type="Script" path="res://hud/status_effects.gd" id="6_ittic"]
+[ext_resource type="Resource" uid="uid://brl2jh1rvkuhd" path="res://items/active_investing.tres" id="6_luwwe"]
 [ext_resource type="PackedScene" uid="uid://rxxo60itn26k" path="res://barracks.tscn" id="8_gqiu1"]
 [ext_resource type="Script" path="res://addons/godot_rl_agents/sync.gd" id="11_dvqrq"]
 [ext_resource type="Script" path="res://logger.gd" id="13_bd0lf"]
@@ -94,6 +95,7 @@ offset_left = 673.0
 offset_top = 20.0
 offset_right = 966.0
 offset_bottom = 441.0
+resource = ExtResource("6_luwwe")
 
 [node name="store_button" type="Button" parent="Camera3D/hud"]
 process_mode = 3
