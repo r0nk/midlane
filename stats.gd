@@ -7,6 +7,8 @@ extends Node
 @export var passive_income = 1
 @export var dodge_chance = 0
 @export var collector_range = 6
+@export var max_health = 100
+@export var health_regen = 10
 
 @export var effects: Array[EffectResource]
 
@@ -33,9 +35,11 @@ func apply_stat_links():
 	$"../ranged".speed=get_stat("attack_speed")
 
 	$"../collector".passive_income=get_stat("passive_income")
-	$"../collector/cs".radius=get_stat("collector_range")
+	$"../collector/cs".shape.radius=get_stat("collector_range")
 
 	$"../health".dodge_chance=get_stat("dodge_chance")/100.0
+	$"../health/sv/bar".max_value=get_stat("max_health")
+	$"../health".regen_rate=get_stat("health_regen")
 
 func effect_timers(delta):
 	var index = 0
