@@ -129,6 +129,7 @@ script = ExtResource("3_uvxae")
 [node name="skill1" parent="Camera3D/hud" instance=ExtResource("4_2exyh")]
 offset_left = -310.0
 offset_right = -210.0
+target_skill_path = "poison_tongue"
 
 [node name="skill2" parent="Camera3D/hud" instance=ExtResource("4_2exyh")]
 offset_left = -186.0

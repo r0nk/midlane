@@ -1,5 +1,7 @@
 extends Node
 
+@export var resource: SkillResource
+
 @onready var explosion = load("res://explosion.tscn")
 
 func activate(target):
@@ -10,4 +12,3 @@ func activate(target):
 	var e = explosion.instantiate()
 	e.position=target
 	get_tree().get_root().get_node("main").add_child(e)
-	pass

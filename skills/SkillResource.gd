@@ -7,4 +7,5 @@ class_name SkillResource
 #TODO targeting types
 #no target, toggle, target point, target area, target unit
 @export_enum("none","toggle","point","unit","area") var targeting: int
-
+@export_file("*.tscn") var spawned_scene_path: String
+@export var passives: Array[EffectResource]

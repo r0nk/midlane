@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=14 format=3 uid="uid://b68u33kb8o074"]
+
+[ext_resource type="Script" path="res://effects/EffectResource.gd" id="1_t6cli"]
+[ext_resource type="Script" path="res://items/ItemResource.gd" id="2_rabx5"]
+
+[sub_resource type="Resource" id="Resource_um1jc"]
+script = ExtResource("1_t6cli")
+key = "move_speed"
+addition = 1.0
+multiplication = 1.0
+duration = 0.0
+permanent = false
+
+[sub_resource type="Resource" id="Resource_i6vqc"]
+script = ExtResource("1_t6cli")
+key = "attack_damage"
+addition = 1.0
+multiplication = 1.0
+duration = 0.0
+permanent = false
+
+[sub_resource type="Resource" id="Resource_x6fxs"]
+script = ExtResource("1_t6cli")
+key = "attack_speed"
+addition = 1.0
+multiplication = 1.0
+duration = 0.0
+permanent = false
+
+[sub_resource type="Resource" id="Resource_xjjqd"]
+script = ExtResource("1_t6cli")
+key = "passive_income"
+addition = 1.0
+multiplication = 1.0
+duration = 0.0
+permanent = false
+
+[sub_resource type="Resource" id="Resource_36rxj"]
+script = ExtResource("1_t6cli")
+key = "dodge_chance"
+addition = 1.0
+multiplication = 1.0
+duration = 0.0
+permanent = false
+
+[sub_resource type="Resource" id="Resource_reko5"]
+script = ExtResource("1_t6cli")
+key = "collector_range"
+addition = 1.0
+multiplication = 1.0
+duration = 0.0
+permanent = false
+
+[sub_resource type="Resource" id="Resource_bo07i"]
+script = ExtResource("1_t6cli")
+key = "max_health"
+addition = 1.0
+multiplication = 1.0
+duration = 0.0
+permanent = false
+
+[sub_resource type="Resource" id="Resource_ja540"]
+script = ExtResource("1_t6cli")
+key = "health_regen"
+addition = 1.0
+multiplication = 1.0
+duration = 0.0
+permanent = false
+
+[sub_resource type="Gradient" id="Gradient_4qiou"]
+colors = PackedColorArray(0.58034, 0.259911, 0.0665213, 1, 0.152941, 0.137255, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_t08eu"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ksaju"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_4qiou")
+noise = SubResource("FastNoiseLite_t08eu")
+
+[resource]
+script = ExtResource("2_rabx5")
+name = "really good stick"
+texture = SubResource("NoiseTexture2D_ksaju")
+effects = Array[ExtResource("1_t6cli")]([SubResource("Resource_um1jc"), SubResource("Resource_i6vqc"), SubResource("Resource_x6fxs"), SubResource("Resource_xjjqd"), SubResource("Resource_36rxj"), SubResource("Resource_reko5"), SubResource("Resource_bo07i"), SubResource("Resource_ja540")])
+cost = 0
