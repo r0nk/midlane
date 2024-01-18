@@ -8,4 +8,5 @@ class_name SkillResource
 #no target, toggle, target point, target area, target unit
 @export_enum("none","toggle","point","unit","area") var targeting: int
 @export_file("*.tscn") var spawned_scene_path: String
+@export_enum("projectile","instant","hook") var scene_travel: int
 @export var passives: Array[EffectResource]

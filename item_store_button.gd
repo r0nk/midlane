@@ -23,6 +23,7 @@ func reload_resource():
 func pressed():
 	if %unit/collector.cash >= cost:
 		%unit/collector.cash-=cost
+		print("bought item:",resource.name)
 		for effect in resource.effects:
 			%unit/stats.add_effect(effect)
 		cost=floor((cost+1)*1.1)

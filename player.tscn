@@ -68,6 +68,9 @@ script = ExtResource("10_go4xk")
 name = ""
 cooldown = 1.0
 targeting = 0
+spawned_scene_path = ""
+scene_travel = 0
+passives = Array[Resource("res://effects/EffectResource.gd")]([])
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1frqt"]
 size = Vector3(10, 4, 2)
