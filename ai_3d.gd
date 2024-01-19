@@ -42,6 +42,10 @@ func get_action_space() -> Dictionary:
 			"size": 2,
 			"action_type": "continuous"
 			},
+		"cast_action" : {
+			"size": 2,
+			"action_type": "continuous"
+			},
 		"buy_one": {
 			"size": 2,
 			"action_type": "discrete"
@@ -54,11 +58,36 @@ func get_action_space() -> Dictionary:
 			"size": 2,
 			"action_type": "discrete"
 			},
+		"cast_q" : {
+			"size": 2,
+			"action_type": "discrete"
+			},
+		"cast_w" : {
+			"size": 2,
+			"action_type": "discrete"
+			},
+		"cast_e" : {
+			"size": 2,
+			"action_type": "discrete"
+			},
+		"cast_r" : {
+			"size": 2,
+			"action_type": "discrete"
+			},
 		}
 
 func set_action(action) -> void:
 	var x = clamp(action["move_action"][0], -1.0, 1.0)
 	var y = clamp(action["move_action"][1], -1.0, 1.0)
+	$"../pathfinding".destination=(position+Vector3(x,0,y))
+
+	x = clamp(action["cast_action"][0], -1.0, 1.0)
+	y = clamp(action["cast_action"][1], -1.0, 1.0)
+	var target = position+Vector3(x,0,y)
+#	if(action["cast_q"]):
+#		q_spell.activate(target)
+#	TODO finish up spell bindings for this.
+	$"../pathfinding".destination=(position+Vector3(x,0,y))
 	#TODO buy things, or punish if we cant afford
 	var store = get_tree().get_root().get_node("main/Camera3D/hud/store")
 	if(action["buy_one"]):
@@ -68,4 +97,3 @@ func set_action(action) -> void:
 	if(action["buy_three"]):
 		store.get_node("item3").pressed()
 
-	$"../pathfinding".destination=(position+Vector3(x,0,y))

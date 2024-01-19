@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cqpofk77rradg"]
+[gd_scene load_steps=25 format=3 uid="uid://cqpofk77rradg"]
 
 [ext_resource type="Script" path="res://unit.gd" id="1_6hbj7"]
 [ext_resource type="Script" path="res://pathfinding.gd" id="2_qxty2"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://skills/SkillResource.gd" id="10_go4xk"]
 [ext_resource type="Script" path="res://skills/poison_tongue.gd" id="10_l55gk"]
 [ext_resource type="Script" path="res://stats.gd" id="10_vfm22"]
+[ext_resource type="Script" path="res://skills/blink.gd" id="11_ok5td"]
 [ext_resource type="Script" path="res://ai_3d.gd" id="12_qakd6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qw5bq"]
@@ -137,6 +138,13 @@ script = ExtResource("9_2jki6")
 resource = SubResource("Resource_r3xi1")
 
 [node name="cooldown" type="Timer" parent="skills/explosion"]
+wait_time = 5.0
+one_shot = true
+
+[node name="blink" type="Node" parent="skills"]
+script = ExtResource("11_ok5td")
+
+[node name="cooldown" type="Timer" parent="skills/blink"]
 wait_time = 5.0
 one_shot = true
 

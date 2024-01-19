@@ -10,3 +10,5 @@ func _input(_event):
 		$pathfinding.destination=bri
 	if Input.is_action_just_pressed('skill_one'):
 		$skills/explosion.activate(bri)
+	if Input.is_action_just_pressed('skill_two'):
+		$skills/blink.activate(bri)
