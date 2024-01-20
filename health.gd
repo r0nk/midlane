@@ -5,12 +5,17 @@ extends Sprite3D
 
 @export var free_on_death=true
 
+@export var shield=0
+
 signal hit(damage)
 signal die()
 
 var dmgn = load("res://dmg_number.tscn")
 
 func hurt(damage):
+	if(shield>0):
+		shield-=1
+		return
 	if(randf()<dodge_chance):
 		#dodge_sfx.play()
 		return

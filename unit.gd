@@ -12,3 +12,5 @@ func _input(_event):
 		$skills/explosion.activate(bri)
 	if Input.is_action_just_pressed('skill_two'):
 		$skills/blink.activate(bri)
+	if Input.is_action_just_pressed('skill_three'):
+		$skills/shield.activate(bri)
