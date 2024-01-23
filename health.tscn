@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b82fju5la8bll"]
 
 [ext_resource type="Script" path="res://health.gd" id="1_d8kha"]
-[ext_resource type="AudioStream" uid="uid://i4g1lwchp1y2" path="res://sfx/kick.ogg" id="2_gt58n"]
+[ext_resource type="AudioStream" uid="uid://b41xogdufyhhq" path="res://sfx/hit.ogg" id="2_vqjte"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ua7cu"]
 viewport_path = NodePath("sv")
@@ -46,8 +46,7 @@ texture = SubResource("ViewportTexture_ua7cu")
 script = ExtResource("1_d8kha")
 
 [node name="hurt_sfx" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.21117, 0)
-stream = ExtResource("2_gt58n")
+stream = ExtResource("2_vqjte")
 
 [node name="sv" type="SubViewport" parent="."]
 disable_3d = true

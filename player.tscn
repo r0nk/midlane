@@ -134,6 +134,7 @@ autostart = true
 
 [node name="shield" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.936126, 0)
+visible = false
 radius = 1.60094
 material = SubResource("StandardMaterial3D_vua6w")
 
@@ -148,7 +149,7 @@ script = ExtResource("9_2jki6")
 resource = SubResource("Resource_r3xi1")
 
 [node name="cooldown" type="Timer" parent="skills/explosion"]
-wait_time = 5.0
+wait_time = 0.3
 one_shot = true
 
 [node name="blink" type="Node" parent="skills"]
