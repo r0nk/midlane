@@ -6,6 +6,7 @@ func player_died(_node):
 func restart_game():
 	$unit/ai.reset()
 	$unit/collector.cash=0
+	$unit/collector.total_collected=0
 	$unit/acquisition.target=null
 	$unit/stats.effects.clear()
 	$unit/health/sv/bar.value=1000
