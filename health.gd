@@ -8,13 +8,17 @@ extends Sprite3D
 @export var shield=0
 
 signal hit(damage)
+signal shield_break(damage)
 signal die()
 
 var dmgn = load("res://dmg_number.tscn")
 
 func hurt(damage):
+	hit.emit(damage)
 	if(shield>0):
 		shield-=1
+		if(shield<=0):
+			shield_break.emit(damage)
 		return
 	if(randf()<dodge_chance):
 		#dodge_sfx.play()
@@ -25,7 +29,6 @@ func hurt(damage):
 	get_tree().get_root().get_node("main").add_child(instance)
 	instance.global_position=global_position
 	$sv/bar.value-=damage
-	hit.emit(damage)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -1,0 +1,111 @@
+[gd_scene load_steps=14 format=3 uid="uid://pesa50ygn0dj"]
+
+[ext_resource type="Script" path="res://turtle.gd" id="1_vwcuq"]
+[ext_resource type="Script" path="res://shield.gd" id="2_tlv5t"]
+[ext_resource type="PackedScene" uid="uid://cnl7brfca7wgp" path="res://pathfinding.tscn" id="2_vv8vj"]
+[ext_resource type="PackedScene" uid="uid://b82fju5la8bll" path="res://health.tscn" id="3_033iv"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0715m"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7g7rv"]
+noise = SubResource("FastNoiseLite_0715m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlecs"]
+albedo_color = Color(0.207843, 1, 0.262745, 1)
+albedo_texture = SubResource("NoiseTexture2D_7g7rv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gv6cu"]
+albedo_color = Color(0, 0.376471, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tk8eh"]
+albedo_color = Color(0.207843, 1, 0.262745, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_785in"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cs36t"]
+transparency = 1
+albedo_color = Color(0.32549, 1, 1, 0.34902)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tbk12"]
+height = 1.66803
+radius = 0.925043
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lofqf"]
+viewport_path = NodePath("sv")
+
+[node name="turtle" type="CharacterBody3D" groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_vwcuq")
+
+[node name="model" type="Node3D" parent="."]
+transform = Transform3D(1.70938, 0, 0, 0, 1.70938, 0, 0, 0, 1.70938, 0, -0.566449, 0)
+
+[node name="body" type="CSGSphere3D" parent="model"]
+transform = Transform3D(0.820556, 0, 0, 0, 0.432705, 0, 0, 0, 0.978898, 0, 0, 0)
+smooth_faces = false
+material = SubResource("StandardMaterial3D_nlecs")
+
+[node name="leg" type="CSGBox3D" parent="model"]
+transform = Transform3D(0.259541, 0.111358, 0.222315, -0.233449, 0.159817, -0.0218305, -0.157554, -0.0533602, 0.398568, 0.34371, -0.0861629, -0.220151)
+size = Vector3(0.981384, 0.593872, 0.371094)
+material = SubResource("StandardMaterial3D_gv6cu")
+
+[node name="leg2" type="CSGBox3D" parent="model"]
+transform = Transform3D(0.234186, 0.0870325, -0.303215, -0.233449, 0.159817, -0.0218305, 0.193241, 0.0875974, 0.341088, 0.34371, -0.0861629, 0.344126)
+size = Vector3(0.981384, 0.593872, 0.371094)
+material = SubResource("StandardMaterial3D_gv6cu")
+
+[node name="leg3" type="CSGBox3D" parent="model"]
+transform = Transform3D(-0.244168, -0.106055, -0.257575, -0.233449, 0.159817, -0.0218305, 0.180463, 0.0632481, -0.376742, -0.333761, -0.0861629, 0.342961)
+size = Vector3(0.981384, 0.593872, 0.371094)
+material = SubResource("StandardMaterial3D_gv6cu")
+
+[node name="leg4" type="CSGBox3D" parent="model"]
+transform = Transform3D(-0.25076, -0.0946245, 0.271002, -0.233449, 0.159817, -0.0218305, -0.171186, -0.0793357, -0.367203, -0.384981, -0.0861629, -0.218986)
+size = Vector3(0.981384, 0.593872, 0.371094)
+material = SubResource("StandardMaterial3D_gv6cu")
+
+[node name="head" type="CSGSphere3D" parent="model"]
+transform = Transform3D(0.382993, 0, 0, 0, 0.201964, 0, 0, 0, 0.456899, 0, 0, -0.575539)
+smooth_faces = false
+material = SubResource("StandardMaterial3D_tk8eh")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="model/head"]
+transform = Transform3D(0.321449, 0, 0, 0, 0.62867, 0, 0, 0, 0.280378, 0.238288, 0.401675, -0.222041)
+radius = 0.265446
+material = SubResource("StandardMaterial3D_785in")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="model/head"]
+transform = Transform3D(0.321449, 0, 0, 0, 0.62867, 0, 0, 0, 0.280378, -0.242969, 0.401675, -0.222041)
+radius = 0.265446
+material = SubResource("StandardMaterial3D_785in")
+
+[node name="shield" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.618376, 0)
+radius = 1.60094
+material = SubResource("StandardMaterial3D_cs36t")
+script = ExtResource("2_tlv5t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.158581, 0)
+shape = SubResource("CylinderShape3D_tbk12")
+
+[node name="pathfinding" parent="." instance=ExtResource("2_vv8vj")]
+speed = 3
+
+[node name="health" parent="." instance=ExtResource("3_033iv")]
+texture = SubResource("ViewportTexture_lofqf")
+regen_rate = 0
+shield = 1
+
+[node name="bar" parent="health/sv" index="0"]
+max_value = 30.0
+value = 30.0
+
+[connection signal="die" from="health" to="." method="die"]
+[connection signal="shield_break" from="health" to="shield" method="shield_break"]
+
+[editable path="health"]

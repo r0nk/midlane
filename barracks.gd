@@ -2,6 +2,7 @@ extends StaticBody3D
 
 @onready var creep = load("res://creep.tscn")
 @onready var laser_bird = load("res://laser_bird.tscn")
+@onready var turtle = load("res://turtle.tscn")
 
 @onready var rune = load("res://rune.tscn")
 
@@ -16,6 +17,11 @@ func _on_timer_timeout():
 		var c = laser_bird.instantiate()
 		c.position = $spawn_point.global_position + Vector3(randf_range(-50,50),0,randf_range(-50,50))
 		add_sibling(c)
+	for i in range(randi()%2):
+		var c = turtle.instantiate()
+		c.position = $spawn_point.global_position + Vector3(randf_range(-50,50),0,randf_range(-50,50))
+		add_sibling(c)
+
 	if(randf() < 0.3):
 		var c = rune.instantiate()
 		c.position = $spawn_point.global_position + Vector3(randf_range(-50,50),0,randf_range(-50,50))
