@@ -2,6 +2,8 @@ extends Area3D
 
 var pull_speed=20
 
+
+var total_collected = 0.0
 var cash = 0.0
 
 var passive_income = 0.0
@@ -11,6 +13,7 @@ func collect(body):
 		body.collect(get_parent()) #TODO find a better way to link all this
 		$heal_sfx.play()
 	else:
+		total_collected+=1
 		cash+=1
 		$coin_sfx.pitch_scale=randf_range(0.9,1.1)
 		$coin_sfx.play()

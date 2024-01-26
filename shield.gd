@@ -11,7 +11,6 @@ func shield_break(damage):
 		b.position=global_position
 		b.direction=v
 		b.damage=damage
-		print("firing laser at ",b.position," facing ",v)
 		get_tree().get_root().get_node("main").add_child(b)
 
 

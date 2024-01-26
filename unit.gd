@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 func die():
-	%logger.log("DEAD: $"+str($collector.cash))
+	%logger.log("DEAD: $"+str($collector.cash)+", Total: $"+str($collector.total_collected))
 	get_parent().restart_game()
 
 func _input(_event):
