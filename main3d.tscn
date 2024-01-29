@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://0vqxkwa3nw8q"]
+[gd_scene load_steps=23 format=3 uid="uid://0vqxkwa3nw8q"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_aiprc"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_kwj0e"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://rxxo60itn26k" path="res://barracks.tscn" id="8_gqiu1"]
 [ext_resource type="Script" path="res://addons/godot_rl_agents/sync.gd" id="11_dvqrq"]
 [ext_resource type="Script" path="res://logger.gd" id="13_bd0lf"]
+[ext_resource type="AudioStream" uid="uid://by0wt5jw3xh74" path="res://music/jazzy-abstract-beat-11254.mp3" id="14_5dbec"]
 
 [sub_resource type="Resource" id="Resource_v1mv1"]
 script = ExtResource("6_lfacy")
@@ -222,6 +223,11 @@ shape = SubResource("WorldBoundaryShape3D_qqc8i")
 
 [node name="Sync" type="Node" parent="."]
 script = ExtResource("11_dvqrq")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_5dbec")
+volume_db = -30.0
+autoplay = true
 
 [node name="logger" type="Node" parent="."]
 unique_name_in_owner = true
