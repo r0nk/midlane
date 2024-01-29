@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://0vqxkwa3nw8q"]
+[gd_scene load_steps=24 format=3 uid="uid://0vqxkwa3nw8q"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_aiprc"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_kwj0e"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://p7gky5cb546c" path="res://item_button.tscn" id="4_acpd2"]
 [ext_resource type="Script" path="res://hud/status_effects.gd" id="6_ittic"]
 [ext_resource type="Script" path="res://items/ItemResource.gd" id="6_lfacy"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="7_yv287"]
 [ext_resource type="PackedScene" uid="uid://rxxo60itn26k" path="res://barracks.tscn" id="8_gqiu1"]
 [ext_resource type="Script" path="res://addons/godot_rl_agents/sync.gd" id="11_dvqrq"]
 [ext_resource type="Script" path="res://logger.gd" id="13_bd0lf"]
@@ -55,6 +56,7 @@ script = ExtResource("1_kwj0e")
 
 [node name="store" type="ColorRect" parent="Camera3D/hud"]
 process_mode = 3
+visible = false
 z_index = -2
 offset_left = 408.0
 offset_top = 151.0
@@ -103,6 +105,72 @@ offset_left = 673.0
 offset_top = 20.0
 offset_right = 966.0
 offset_bottom = 441.0
+
+[node name="pause_menu" type="ColorRect" parent="Camera3D/hud"]
+process_mode = 3
+visible = false
+z_index = -2
+offset_left = 408.0
+offset_top = 151.0
+offset_right = 1382.0
+offset_bottom = 855.0
+color = Color(0, 0, 0, 0.466667)
+script = ExtResource("7_yv287")
+
+[node name="exit" type="Button" parent="Camera3D/hud/pause_menu"]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 550.0
+offset_right = 608.0
+offset_bottom = 650.0
+theme = ExtResource("2_wrot3")
+text = "Exit"
+
+[node name="music_slider" type="HSlider" parent="Camera3D/hud/pause_menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.336
+anchor_bottom = 0.131
+offset_left = 355.0
+offset_top = 247.0
+offset_right = 629.736
+offset_bottom = 233.776
+value = 100.0
+rounded = true
+tick_count = 5
+ticks_on_borders = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera3D/hud/pause_menu/music_slider"]
+layout_mode = 0
+offset_left = -198.0
+offset_top = 9.0
+offset_right = -16.0
+offset_bottom = 64.0
+theme = ExtResource("2_wrot3")
+text = "Music:"
+
+[node name="master_slider" type="HSlider" parent="Camera3D/hud/pause_menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.336
+anchor_bottom = 0.131
+offset_left = 355.0
+offset_top = 174.0
+offset_right = 629.736
+offset_bottom = 160.776
+value = 100.0
+rounded = true
+tick_count = 5
+ticks_on_borders = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera3D/hud/pause_menu/master_slider"]
+layout_mode = 0
+offset_left = -198.0
+offset_top = 9.0
+offset_right = -16.0
+offset_bottom = 64.0
+theme = ExtResource("2_wrot3")
+text = "Master:"
 
 [node name="store_button" type="Button" parent="Camera3D/hud"]
 process_mode = 3
@@ -225,9 +293,11 @@ shape = SubResource("WorldBoundaryShape3D_qqc8i")
 script = ExtResource("11_dvqrq")
 
 [node name="music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("14_5dbec")
 volume_db = -30.0
 autoplay = true
+bus = &"Music"
 
 [node name="logger" type="Node" parent="."]
 unique_name_in_owner = true
@@ -235,4 +305,7 @@ script = ExtResource("13_bd0lf")
 
 [connection signal="pressed" from="Camera3D/hud/store/exit" to="Camera3D/hud/store" method="toggle_store"]
 [connection signal="pressed" from="Camera3D/hud/store/refresh button" to="Camera3D/hud/store" method="refresh_all"]
+[connection signal="pressed" from="Camera3D/hud/pause_menu/exit" to="Camera3D/hud/pause_menu" method="toggle_pause_menu"]
+[connection signal="drag_ended" from="Camera3D/hud/pause_menu/music_slider" to="Camera3D/hud/pause_menu" method="set_music"]
+[connection signal="drag_ended" from="Camera3D/hud/pause_menu/master_slider" to="Camera3D/hud/pause_menu" method="set_master"]
 [connection signal="pressed" from="Camera3D/hud/store_button" to="Camera3D/hud/store" method="toggle_store"]
