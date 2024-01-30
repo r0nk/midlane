@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=7 format=3 uid="uid://dfigppamt3bk0"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://dfigppamt3bk0"]
 
 [ext_resource type="Script" path="res://effects/EffectResource.gd" id="1_so2h7"]
 [ext_resource type="Script" path="res://items/ItemResource.gd" id="2_piob5"]
+[ext_resource type="Texture2D" uid="uid://7kolcrvkams2" path="res://items/sanic.png" id="3_3nkf2"]
 
 [sub_resource type="Resource" id="Resource_rmk5c"]
 script = ExtResource("1_so2h7")
@@ -11,21 +12,10 @@ multiplication = 1.0
 duration = 0.0
 permanent = true
 
-[sub_resource type="Gradient" id="Gradient_abthb"]
-colors = PackedColorArray(0, 0, 0, 1, 0.309281, 0.846907, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_bpbad"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kov3u"]
-width = 64
-height = 64
-color_ramp = SubResource("Gradient_abthb")
-noise = SubResource("FastNoiseLite_bpbad")
-
 [resource]
 resource_local_to_scene = true
 script = ExtResource("2_piob5")
 name = "sanic"
-texture = SubResource("NoiseTexture2D_kov3u")
+texture = ExtResource("3_3nkf2")
 effects = Array[ExtResource("1_so2h7")]([SubResource("Resource_rmk5c")])
 cost = 0

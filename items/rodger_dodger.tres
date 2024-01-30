@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=7 format=3 uid="uid://citmrg51t2stn"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://citmrg51t2stn"]
 
 [ext_resource type="Script" path="res://effects/EffectResource.gd" id="1_go5af"]
 [ext_resource type="Script" path="res://items/ItemResource.gd" id="2_llsym"]
+[ext_resource type="Texture2D" uid="uid://dcltdq1c84tj6" path="res://items/rodger_dodger.png" id="3_88lnr"]
 
 [sub_resource type="Resource" id="Resource_2ir45"]
 script = ExtResource("1_go5af")
@@ -11,20 +12,9 @@ multiplication = 1.0
 duration = 0.0
 permanent = true
 
-[sub_resource type="Gradient" id="Gradient_r7ecc"]
-colors = PackedColorArray(0, 0, 1, 1, 1, 0, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_avdp8"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_chpq1"]
-width = 64
-height = 64
-color_ramp = SubResource("Gradient_r7ecc")
-noise = SubResource("FastNoiseLite_avdp8")
-
 [resource]
 script = ExtResource("2_llsym")
 name = "Dodger"
-texture = SubResource("NoiseTexture2D_chpq1")
+texture = ExtResource("3_88lnr")
 effects = Array[ExtResource("1_go5af")]([SubResource("Resource_2ir45")])
 cost = 0

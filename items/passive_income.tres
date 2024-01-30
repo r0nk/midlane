@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=9 format=3 uid="uid://oq5ys6h6xeje"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=7 format=3 uid="uid://oq5ys6h6xeje"]
 
 [ext_resource type="Script" path="res://effects/EffectResource.gd" id="1_ju7bl"]
 [ext_resource type="Script" path="res://items/ItemResource.gd" id="2_qqtkn"]
+[ext_resource type="Texture2D" uid="uid://cn5oveqe2hx7i" path="res://items/passive_income.png" id="3_sft23"]
 
 [sub_resource type="Resource" id="Resource_5k0ke"]
 script = ExtResource("1_ju7bl")
@@ -27,20 +28,9 @@ multiplication = 1.0
 duration = 0.0
 permanent = false
 
-[sub_resource type="Gradient" id="Gradient_gevax"]
-colors = PackedColorArray(0.572988, 0.572988, 0.572988, 1, 0.541736, 0.540629, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_v3tj3"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kdnhn"]
-width = 64
-height = 64
-color_ramp = SubResource("Gradient_gevax")
-noise = SubResource("FastNoiseLite_v3tj3")
-
 [resource]
 script = ExtResource("2_qqtkn")
 name = "passive_investing"
-texture = SubResource("NoiseTexture2D_kdnhn")
+texture = ExtResource("3_sft23")
 effects = Array[ExtResource("1_ju7bl")]([SubResource("Resource_5k0ke"), SubResource("Resource_h3ukn"), SubResource("Resource_a3yyo")])
 cost = 0

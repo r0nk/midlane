@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=9 format=3 uid="uid://bf2danaicdrgc"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=7 format=3 uid="uid://bf2danaicdrgc"]
 
 [ext_resource type="Script" path="res://effects/EffectResource.gd" id="1_dyppq"]
 [ext_resource type="Script" path="res://items/ItemResource.gd" id="2_wr10o"]
+[ext_resource type="Texture2D" uid="uid://w10xnlwniw8c" path="res://items/strength.png" id="3_au2sw"]
 
 [sub_resource type="Resource" id="Resource_x12i5"]
 script = ExtResource("1_dyppq")
@@ -27,20 +28,9 @@ multiplication = 1.0
 duration = 0.0
 permanent = false
 
-[sub_resource type="Gradient" id="Gradient_4mx6t"]
-colors = PackedColorArray(0.615686, 0, 0, 1, 0.946571, 0.229422, 1.92523e-07, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_l8rwx"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r1xiv"]
-width = 64
-height = 64
-color_ramp = SubResource("Gradient_4mx6t")
-noise = SubResource("FastNoiseLite_l8rwx")
-
 [resource]
 script = ExtResource("2_wr10o")
 name = "strength"
-texture = SubResource("NoiseTexture2D_r1xiv")
+texture = ExtResource("3_au2sw")
 effects = Array[ExtResource("1_dyppq")]([SubResource("Resource_x12i5"), SubResource("Resource_f2ovp"), SubResource("Resource_3p7yo")])
 cost = 0
