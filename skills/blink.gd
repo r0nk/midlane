@@ -5,3 +5,4 @@ func activate(target):
 		return
 	$cooldown.start()
 	$"../../".position=target
+	$sfx.play()

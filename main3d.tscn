@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://0vqxkwa3nw8q"]
+[gd_scene load_steps=25 format=3 uid="uid://0vqxkwa3nw8q"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_aiprc"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_kwj0e"]
@@ -12,7 +12,10 @@
 [ext_resource type="Script" path="res://hud/status_effects.gd" id="6_ittic"]
 [ext_resource type="Script" path="res://pause_menu.gd" id="7_yv287"]
 [ext_resource type="PackedScene" uid="uid://rxxo60itn26k" path="res://barracks.tscn" id="8_gqiu1"]
+[ext_resource type="Texture2D" uid="uid://dya2x63mf2nhu" path="res://skills/explosion.png" id="10_cwn3o"]
 [ext_resource type="Script" path="res://addons/godot_rl_agents/sync.gd" id="11_dvqrq"]
+[ext_resource type="Texture2D" uid="uid://qxp3jdxnytqs" path="res://skills/blink.png" id="11_qicjh"]
+[ext_resource type="Texture2D" uid="uid://d24j6xwyll847" path="res://skills/sheild.png" id="12_legax"]
 [ext_resource type="Script" path="res://logger.gd" id="13_bd0lf"]
 [ext_resource type="AudioStream" uid="uid://by0wt5jw3xh74" path="res://music/jazzy-abstract-beat-11254.mp3" id="14_5dbec"]
 
@@ -194,24 +197,39 @@ text = "$ 500
 "
 script = ExtResource("3_uvxae")
 
-[node name="skill1" parent="Camera3D/hud" instance=ExtResource("4_2exyh")]
-offset_left = -310.0
-offset_right = -210.0
-target_skill_path = "poison_tongue"
-
 [node name="skill2" parent="Camera3D/hud" instance=ExtResource("4_2exyh")]
 offset_left = -186.0
 offset_right = -86.0
 
+[node name="cd" parent="Camera3D/hud/skill2" index="0"]
+visible = true
+
+[node name="Sprite2D" parent="Camera3D/hud/skill2" index="1"]
+texture = ExtResource("10_cwn3o")
+
 [node name="skill3" parent="Camera3D/hud" instance=ExtResource("4_2exyh")]
 offset_left = -59.0
 offset_right = 41.0
+target_skill_path = "blink"
+
+[node name="cd" parent="Camera3D/hud/skill3" index="0"]
+visible = true
+
+[node name="Sprite2D" parent="Camera3D/hud/skill3" index="1"]
+texture = ExtResource("11_qicjh")
 
 [node name="skill4" parent="Camera3D/hud" instance=ExtResource("4_2exyh")]
 offset_left = 61.0
 offset_top = -129.0
 offset_right = 161.0
 offset_bottom = -29.0
+target_skill_path = "shield"
+
+[node name="cd" parent="Camera3D/hud/skill4" index="0"]
+visible = true
+
+[node name="Sprite2D" parent="Camera3D/hud/skill4" index="1"]
+texture = ExtResource("12_legax")
 
 [node name="unit" parent="." instance=ExtResource("2_bypwp")]
 unique_name_in_owner = true
@@ -300,3 +318,7 @@ script = ExtResource("13_bd0lf")
 [connection signal="drag_ended" from="Camera3D/hud/pause_menu/music_slider" to="Camera3D/hud/pause_menu" method="set_music"]
 [connection signal="drag_ended" from="Camera3D/hud/pause_menu/master_slider" to="Camera3D/hud/pause_menu" method="set_master"]
 [connection signal="pressed" from="Camera3D/hud/store_button" to="Camera3D/hud/store" method="toggle_store"]
+
+[editable path="Camera3D/hud/skill2"]
+[editable path="Camera3D/hud/skill3"]
+[editable path="Camera3D/hud/skill4"]

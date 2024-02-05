@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cqpofk77rradg"]
+[gd_scene load_steps=28 format=3 uid="uid://cqpofk77rradg"]
 
 [ext_resource type="Script" path="res://unit.gd" id="1_6hbj7"]
 [ext_resource type="Script" path="res://pathfinding.gd" id="2_qxty2"]
@@ -10,11 +10,12 @@
 [ext_resource type="AudioStream" uid="uid://c841tt1ignxaj" path="res://sfx/02_Heal_02.wav" id="6_63pr1"]
 [ext_resource type="Script" path="res://skills/explosion.gd" id="9_2jki6"]
 [ext_resource type="Script" path="res://skills/SkillResource.gd" id="10_go4xk"]
-[ext_resource type="Script" path="res://skills/poison_tongue.gd" id="10_l55gk"]
 [ext_resource type="Script" path="res://stats.gd" id="10_vfm22"]
 [ext_resource type="Script" path="res://skills/blink.gd" id="11_ok5td"]
+[ext_resource type="AudioStream" uid="uid://dipxuokmcowtk" path="res://sfx/teledice.wav" id="12_2vqyw"]
 [ext_resource type="Script" path="res://ai_3d.gd" id="12_qakd6"]
 [ext_resource type="Script" path="res://skills/shield.gd" id="13_2nhq4"]
+[ext_resource type="AudioStream" uid="uid://cqffls5hr5n33" path="res://sfx/shield.wav" id="14_ont72"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qw5bq"]
 
@@ -108,6 +109,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.31632, 0)
 texture = SubResource("ViewportTexture_0by5y")
 free_on_death = false
 
+[node name="bar" parent="health/sv" index="0"]
+max_value = 30.0
+value = 30.0
+
+[node name="follow_bar" parent="health/sv" index="1"]
+max_value = 30.0
+value = 30.0
+
 [node name="collector" type="Area3D" parent="."]
 collision_layer = 4
 collision_mask = 4
@@ -159,12 +168,9 @@ script = ExtResource("11_ok5td")
 wait_time = 5.0
 one_shot = true
 
-[node name="poison_tongue" type="Node" parent="skills"]
-script = ExtResource("10_l55gk")
-
-[node name="cooldown" type="Timer" parent="skills/poison_tongue"]
-wait_time = 5.0
-one_shot = true
+[node name="sfx" type="AudioStreamPlayer3D" parent="skills/blink"]
+stream = ExtResource("12_2vqyw")
+volume_db = 10.0
 
 [node name="shield" type="Node" parent="skills"]
 script = ExtResource("13_2nhq4")
@@ -173,10 +179,15 @@ script = ExtResource("13_2nhq4")
 wait_time = 5.0
 one_shot = true
 
+[node name="sfx" type="AudioStreamPlayer3D" parent="skills/shield"]
+stream = ExtResource("14_ont72")
+
 [node name="stats" type="Node" parent="."]
 script = ExtResource("10_vfm22")
 move_speed = 5
 passive_income = 0
+max_health = 30
+health_regen = 1
 
 [node name="ai" type="Node3D" parent="."]
 script = ExtResource("12_qakd6")
@@ -235,4 +246,5 @@ debug_shape_custom_color = Color(1, 0, 0.784314, 1)
 [connection signal="hit" from="health" to="ai" method="pain"]
 [connection signal="timeout" from="reaquire" to="acquisition" method="process_targeting"]
 
+[editable path="health"]
 [editable path="acquisition"]

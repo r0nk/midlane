@@ -19,6 +19,7 @@ func hurt(damage):
 		shield-=1
 		if(shield<=0):
 			shield_break.emit(damage)
+			$deshield_sfx.play()
 		return
 	if(randf()<dodge_chance):
 		#dodge_sfx.play()

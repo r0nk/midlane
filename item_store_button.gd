@@ -9,6 +9,9 @@ func _ready():
 		resource = $resource_picker.pick("")
 	reload_resource()
 
+func hover():
+	$hover.play()
+
 func randomize_item():
 	resource = $resource_picker.pick("")
 	reload_resource()
@@ -22,6 +25,7 @@ func reload_resource():
 
 func pressed():
 	if %unit/collector.cash >= cost:
+		$press.play()
 		%unit/collector.cash-=cost
 		%logger.log("bought item: "+resource.name)
 		for effect in resource.effects:

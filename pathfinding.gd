@@ -1,6 +1,6 @@
 extends Node
 
-var destination = Vector3(5,2,5)
+var destination = Vector3(5,0,5)
 @export var speed = 5
 @export var encircle = false
 @export var encircle_radius = 10
